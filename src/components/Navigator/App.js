@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, BackHandler, ToastAndroid } from 'react-native';
+import { Platform, BackHandler, ToastAndroid, StatusBar, View } from 'react-native';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
@@ -40,11 +40,19 @@ class App extends Component {
     render() {
         const { dispatch, nav } = this.props;
         return (
-            <Nav navigation={addNavigationHelpers({
-                state: nav,
-                dispatch,
-                addListener,
-            })} />
+            <View style={{flex: 1}}>
+                <StatusBar 
+                    translucent = {true}
+                    backgroundColor = 'transparent'
+                    barStyle = 'light-content'
+                    />
+                <Nav navigation = {addNavigationHelpers({
+                    state: nav,
+                    dispatch,
+                    addListener,
+                })}/>
+            </View>
+            
         );
     }
 }

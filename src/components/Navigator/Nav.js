@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  View, Image, Text } from 'react-native';
+import {  View, Image, Text, Platform } from 'react-native';
 import Tab from './Tab';
 import Publish from '../Publish';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
@@ -10,6 +10,8 @@ const navigationOptions = {
         borderBottomWidth: 0,
         elevation: 0,
         backgroundColor: '#ff2d55',
+        height: Platform.OS == 'ios' ? 44 : 64,
+        paddingTop: Platform.OS == 'ios' ? 0 : 20,
     },
     headerTintColor: '#fff',
     headerBackTitle: null,
