@@ -16,6 +16,7 @@ const navigationOptions = {
     headerTintColor: '#fff',
     headerBackTitle: null,
     gesturesEnabled: false,
+    // headerTitleStyle: { flex: 1, textAlign: 'center' },
 };
 
 const Main = StackNavigator(
@@ -50,8 +51,8 @@ export default StackNavigator(
         },
     },
     {
-        mode: 'modal',
+        // mode: 'modal',
         headerMode: 'none',
-        // transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forFade })
+        transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forFade })
     }
 )
