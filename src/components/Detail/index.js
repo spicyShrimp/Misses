@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { 
-  View,
-  SafeAreaView, 
+  View, 
   Text, 
-  TouchableOpacity,
+  TouchableOpacity, 
+  SafeAreaView, 
   StyleSheet, 
   Dimensions, 
   Platform,
-  StatusBar,
 } from 'react-native';
 const { width } = Dimensions.get('window');
 
@@ -36,7 +35,7 @@ export default class Publish extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   button: {

@@ -23,7 +23,7 @@ export default class New extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    justifyContent: 'space-evenly', 
+    // justifyContent: 'space-evenly', 
     alignItems: 'center', 
   },
   button: {

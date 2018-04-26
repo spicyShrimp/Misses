@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {  View, Image, Text, Platform } from 'react-native';
+import {  View, Image, Text, Platform, StatusBar } from 'react-native';
 import Tab from './Tab';
+import Detail from '../Detail';
 import Publish from '../Publish';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
@@ -10,8 +11,8 @@ const navigationOptions = {
         borderBottomWidth: 0,
         elevation: 0,
         backgroundColor: '#ff2d55',
-        height: Platform.OS == 'ios' ? 44 : 64,
-        paddingTop: Platform.OS == 'ios' ? 0 : 20,
+        height: Platform.OS == 'ios' ? 44 : (44 + StatusBar.currentHeight),
+        paddingTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight,
     },
     headerTitleStyle: { textAlign: 'center', flex: 1, },
     headerTintColor: '#fff',
@@ -26,7 +27,7 @@ const Main = StackNavigator(
             screen: Tab,
          },
         Detail: { 
-            screen: Publish,
+            screen: Detail,
         },
     },
     {
