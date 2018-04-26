@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { 
-  View, 
-  Text, 
-  TouchableOpacity, 
+  View,
   SafeAreaView, 
+  Text, 
+  TouchableOpacity,
   StyleSheet, 
   Dimensions, 
   Platform,
+  StatusBar,
 } from 'react-native';
 const { width } = Dimensions.get('window');
 
-export default class Publish extends Component {
+export default class Detail extends Component {
   static navigationOptions = {
     headerTitle: 'Detail',
     headerRight:<View/>,
@@ -35,17 +36,17 @@ export default class Publish extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   button: {
     width,
-    alignSelf: 'flex-end',
-    backgroundColor:'#ff2d55', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
     height: 50,
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor:'#ff2d55', 
     borderTopColor: 'rgba(0, 0, 0, 0.3)',
     borderTopWidth: 0.5,
+    justifyContent: 'center', 
+    alignItems: 'center', 
   }
 })

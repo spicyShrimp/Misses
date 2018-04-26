@@ -41,12 +41,13 @@ const styles = StyleSheet.create({
   },
   button: {
     width,
-    alignSelf: 'flex-end',
-    backgroundColor:'#ff2d55', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
     height: 50,
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor:'#ff2d55', 
     borderTopColor: 'rgba(0, 0, 0, 0.3)',
     borderTopWidth: 0.5,
+    justifyContent: 'center', 
+    alignItems: 'center', 
   }
 })
