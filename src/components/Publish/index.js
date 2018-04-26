@@ -9,9 +9,8 @@ import {
   Platform,
   FlatList,
   Image,
-  StatusBar,
 } from 'react-native';
-const { width, height } = Dimensions.get('window');
+import { width, statusBarHeight, isIPhoneX } from '../../configs/Device';
 
 export default class Publish extends Component {
   static navigationOptions = {
@@ -68,7 +67,7 @@ export default class Publish extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
+    paddingTop: statusBarHeight,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
     height: 50,
     position: 'absolute',
     bottom: 0,
-    marginBottom: (Platform.OS == 'ios' && height == 812) ? 34 : 0,
+    marginBottom: isIPhoneX ? 34 : 0,
     backgroundColor:'#fff',
     justifyContent: 'center', 
     alignItems: 'center', 

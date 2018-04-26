@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import {  SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { 
+  SafeAreaView, 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  StyleSheet 
+} from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { addAction, minAction } from '../../actions/countAction';
-const { width } = Dimensions.get('window');
+import { width } from '../../configs/Device';
 
 class Essence extends Component {
   static navigationOptions = {

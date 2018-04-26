@@ -5,10 +5,8 @@ import {
     View, 
     SafeAreaView, 
     TouchableWithoutFeedback, 
-    Platform, 
-    Dimensions 
 } from 'react-native';
-const {width, height} = Dimensions.get('window');
+import { width, height, isIPhoneX} from '../../configs/Device';
 
 export default class TabBar extends Component {
     renderItem = (route, index) => {
@@ -74,7 +72,7 @@ const styles = {
         justifyContent:'space-around',
         borderTopColor: 'rgba(0, 0, 0, 0.3)',
         borderTopWidth: 0.5,
-        paddingBottom: (Platform.OS == 'ios' && height == 812) ? 34 : 0,
+        paddingBottom: isIPhoneX ? 34 : 0,
     },
     tabLine: {
         height: 0.5, 

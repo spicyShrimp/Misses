@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import {  SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { 
+  SafeAreaView, 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  StyleSheet 
+} from 'react-native';
 
 export default class Me extends Component {
   static navigationOptions = {

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Text, Image, View, TextInput, StyleSheet } from 'react-native';
+import { 
+    Text, 
+    Image, 
+    View, 
+    StyleSheet 
+} from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import TabBar from './TabBar';
 import Essence from '../Essence';

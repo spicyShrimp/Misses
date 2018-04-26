@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import {  SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-
+import { 
+  SafeAreaView, 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  StyleSheet 
+} from 'react-native';
+  
 export default class New extends Component {
   static navigationOptions = {
     headerTitle: '百思不得姐', 

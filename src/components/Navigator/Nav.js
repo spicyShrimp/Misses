@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
-import {  View, Image, Text, Platform, StatusBar, Easing, Animated } from 'react-native';
+import { 
+    View, 
+    Image, 
+    Text, 
+    Platform, 
+    StatusBar, 
+    Easing, 
+    Animated
+} from 'react-native';
 import Tab from './Tab';
 import Detail from '../Detail';
 import Publish from '../Publish';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
+import { ios, statusBarHeight } from '../../configs/Device';
 
 const navigationOptions = {
     headerStyle: { 
         borderBottomWidth: 0,
         elevation: 0,
         backgroundColor: '#ff2d55',
-        height: Platform.OS == 'ios' ? 44 : (44 + StatusBar.currentHeight),
-        paddingTop: Platform.OS == 'ios' ? 0 : StatusBar.currentHeight,
+        paddingTop: ios ? 0 : statusBarHeight,
+        height: 44 + (ios ? 0 : statusBarHeight),
     },
     headerTitleStyle: { textAlign: 'center', flex: 1, },
     headerTintColor: '#fff',
     headerBackTitle: null,
     gesturesEnabled: false,
-    // headerTitleStyle: { flex: 1, textAlign: 'center' },
 };
 
 const Main = StackNavigator(

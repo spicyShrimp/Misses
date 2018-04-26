@@ -4,12 +4,9 @@ import {
   SafeAreaView, 
   Text, 
   TouchableOpacity,
-  StyleSheet, 
-  Dimensions, 
-  Platform,
-  StatusBar,
+  StyleSheet,
 } from 'react-native';
-const { width, height } = Dimensions.get('window');
+import { width, height, isIPhoneX } from '../../configs/Device';
 
 export default class Detail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -49,7 +46,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     alignSelf: 'flex-end',
-    marginBottom: (Platform.OS == 'ios' && height == 812) ? 34 : 0,
+    marginBottom: isIPhoneX ? 34 : 0,
     backgroundColor:'#fff',
     justifyContent: 'center', 
     alignItems: 'center', 

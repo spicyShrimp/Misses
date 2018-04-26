@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-import { Platform, BackHandler, ToastAndroid, StatusBar, View } from 'react-native';
+import { 
+    Platform, 
+    BackHandler, 
+    ToastAndroid, 
+    StatusBar, 
+    View 
+} from 'react-native';
 import { addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 import { connect } from 'react-redux';
 import Nav from './Nav';
+import { android } from '../../configs/Device';
 
 const addListener = createReduxBoundAddListener("root");
 
@@ -12,12 +19,12 @@ let lastBackPressed = null;
 class App extends Component {
 
     componentDidMount() {
-        if (Platform.OS === 'android') {
+        if (android) {
             BackHandler.addEventListener('hardwareBackPress', this.onBackAndroid);
         }
     }
     componentWillUnmount() {
-        if (Platform.OS === 'android') {
+        if (android) {
             BackHandler.removeEventListener('hardwareBackPress', this.onBackAndroid);
             lastBackPressed = null;
         }
