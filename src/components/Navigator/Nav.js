@@ -17,6 +17,7 @@ const navigationOptions = {
     headerTintColor: '#fff',
     headerBackTitle: null,
     gesturesEnabled: false,
+    // headerTitleStyle: { flex: 1, textAlign: 'center' },
 };
 
 const Main = StackNavigator(
