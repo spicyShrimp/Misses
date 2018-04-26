@@ -12,16 +12,20 @@ import {
 const { width } = Dimensions.get('window');
 
 export default class Detail extends Component {
-  static navigationOptions = {
-    headerTitle: 'Detail',
-    headerRight:<View/>,
-  }
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    
+    return {
+      headerTitle: params ? params.title : '百思不得姐',
+      headerRight: <View/>
+    }
+  };
 
   render() {
     return (
       <SafeAreaView 
         style = { styles.container }>
-            <Text>111</Text>
+            <Text>详情</Text>
             <TouchableOpacity 
                 style = { styles.button }
                 activeOpacity = { 0.6 }
@@ -37,6 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
     width,

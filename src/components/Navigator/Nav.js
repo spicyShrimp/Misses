@@ -32,7 +32,7 @@ const Main = StackNavigator(
     },
     {
         mode: 'card',
-        headerMode: 'float',
+        headerMode: 'screen',
         navigationOptions,
         transitionConfig: () => ({ 
             screenInterpolator: CardStackStyleInterpolator.forHorizontal

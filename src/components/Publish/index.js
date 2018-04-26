@@ -19,11 +19,17 @@ export default class Publish extends Component {
     headerRight:<View/>,
   }
 
-  _renderItem = ({item}) => {
+  _goDetail (item) {
+    console.log(item.key);
+    this.props.navigation.goBack();
+    this.props.navigation.navigate('Detail', {title: item.title});
+  }
+
+  _renderItem ({item}) {
     return (
-      <TouchableOpacity style={ styles.item }>
+      <TouchableOpacity style={ styles.item } onPress={ ()=>this._goDetail(item) }>
           <Image source={ {uri: item.image} }  style={{width: 57, height: 57}}/>
-          <Text>{item.key}</Text>
+          <Text>{item.title}</Text>
       </TouchableOpacity>
     )
   }
@@ -35,14 +41,14 @@ export default class Publish extends Component {
             <View style = { styles.flat }>
               <FlatList
                   data={[
-                    {key: '发视频', image: 'publish_video'},
-                    {key: '发图片', image: 'publish_picture'},
-                    {key: '发段子', image: 'publish_text'},
-                    {key: '发声音', image: 'publish_audio'},
-                    {key: '发链接', image: 'publish_link'},
-                    {key: '音乐相册', image: 'publish_review'},
+                    {key: 'video', title: '发视频', image: 'publish_video'},
+                    {key: 'picture', title: '发图片', image: 'publish_picture'},
+                    {key: 'text', title: '发段子', image: 'publish_text'},
+                    {key: 'audio', title: '发声音', image: 'publish_audio'},
+                    {key: 'link', title: '发链接', image: 'publish_link'},
+                    {key: 'review', title: '音乐相册', image: 'publish_review'},
                   ]}
-                  renderItem = { this._renderItem }
+                  renderItem = { ({item})=>this._renderItem({item}) }
                   numColumns= {3}
                   scrollEnabled = {false}
               />
