@@ -5,13 +5,13 @@ import store from './store';
 import App from './components/Navigator/App';
 
 export default class Root extends Component {
-  render() {
-    return (
-      <Provider store={ store }>
-        <App/>
-      </Provider>
-    );
-  }
+	render() {
+		return (
+			<Provider store = { store }>
+				<App/>
+	   		</Provider>
+		);
+	}
 }
 
 AppRegistry.registerComponent('Misses', () => Root);
