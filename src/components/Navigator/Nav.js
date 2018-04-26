@@ -13,6 +13,7 @@ const navigationOptions = {
         height: Platform.OS == 'ios' ? 44 : 64,
         paddingTop: Platform.OS == 'ios' ? 0 : 20,
     },
+    headerTitleStyle: { textAlign: 'center', flex: 1, },
     headerTintColor: '#fff',
     headerBackTitle: null,
     gesturesEnabled: false,
@@ -21,10 +22,10 @@ const navigationOptions = {
 const Main = StackNavigator(
     {
         Tab: { 
-            screen: Tab
+            screen: Tab,
          },
         Detail: { 
-            screen: Publish
+            screen: Publish,
         },
     },
     {
@@ -40,18 +41,15 @@ const Main = StackNavigator(
 export default StackNavigator(
     {
         Main: { 
-            screen: Main 
+            screen: Main, 
         },
         Publish: { 
             screen: Publish, 
-            navigationOptions: { 
-                gesturesEnabled: false 
-            } 
         },
     },
     {
-        mode: 'modal',
+        // mode: 'modal',
         headerMode: 'none',
-        // transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forFade })
+        transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forFade })
     }
 )

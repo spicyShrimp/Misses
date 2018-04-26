@@ -7,8 +7,9 @@ const { width } = Dimensions.get('window');
 
 class Essence extends Component {
   static navigationOptions = {
-    headerTitle: '百思不得姐', 
-  }
+      headerTitle: '百思不得姐',
+      // headerRight: <View/>,
+  };
   render() {
     const { counter, addAction, minAction } = this.props;
     return (

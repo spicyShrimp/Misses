@@ -3,7 +3,7 @@ import {  SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-n
 
 export default class Me extends Component {
   static navigationOptions = {
-    headerTitle: '我的', 
+    headerTitle: '我的',
   }
   render() {
     return (

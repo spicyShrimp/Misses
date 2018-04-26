@@ -12,7 +12,8 @@ const { width } = Dimensions.get('window');
 export default class Publish extends Component {
   static navigationOptions = {
     headerTitle: 'Detail',
-  };
+    headerRight:<View/>,
+  }
 
   render() {
     return (
