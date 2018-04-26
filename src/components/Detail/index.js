@@ -21,13 +21,13 @@ export default class Detail extends Component {
     return (
       <SafeAreaView 
         style = { styles.container }>
-        <Text>111</Text>
-          <TouchableOpacity 
-            style = { styles.button }
-            activeOpacity = { 0.6 }
-            onPress = { ()=>this.props.navigation.goBack() }>
-              <Text>取消</Text>
-          </TouchableOpacity>
+            <Text>111</Text>
+            <TouchableOpacity 
+                style = { styles.button }
+                activeOpacity = { 0.6 }
+                onPress = { ()=>this.props.navigation.goBack() }>
+                <Text>取消</Text>
+            </TouchableOpacity>
       </SafeAreaView>
     );
   }
