@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  View, Image, Text, Platform, StatusBar } from 'react-native';
+import {  View, Image, Text, Platform, StatusBar, Easing, Animated } from 'react-native';
 import Tab from './Tab';
 import Detail from '../Detail';
 import Publish from '../Publish';
@@ -35,7 +35,12 @@ const Main = StackNavigator(
         headerMode: 'screen',
         navigationOptions,
         transitionConfig: () => ({ 
-            screenInterpolator: CardStackStyleInterpolator.forHorizontal
+            transitionSpec: {
+                duration: 250,
+                easing: Easing.linear,
+                timing: Animated.timing,
+            },
+            screenInterpolator: CardStackStyleInterpolator.forHorizontal,
         })
     }
 )

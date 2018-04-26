@@ -11,7 +11,7 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default class Publish extends Component {
   static navigationOptions = {
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     height: 50,
     position: 'absolute',
     bottom: 0,
+    marginBottom: (Platform.OS == 'ios' && height == 812) ? 34 : 0,
     backgroundColor:'#fff',
     justifyContent: 'center', 
     alignItems: 'center', 

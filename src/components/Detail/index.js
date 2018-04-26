@@ -9,7 +9,7 @@ import {
   Platform,
   StatusBar,
 } from 'react-native';
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default class Detail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -30,7 +30,7 @@ export default class Detail extends Component {
                 style = { styles.button }
                 activeOpacity = { 0.6 }
                 onPress = { ()=>this.props.navigation.goBack() }>
-                <Text>取消</Text>
+                <Text>返回</Text>
             </TouchableOpacity>
       </SafeAreaView>
     );
@@ -48,9 +48,9 @@ const styles = StyleSheet.create({
     height: 50,
     position: 'absolute',
     bottom: 0,
-    backgroundColor:'#ff2d55', 
-    borderTopColor: 'rgba(0, 0, 0, 0.3)',
-    borderTopWidth: 0.5,
+    alignSelf: 'flex-end',
+    marginBottom: (Platform.OS == 'ios' && height == 812) ? 34 : 0,
+    backgroundColor:'#fff',
     justifyContent: 'center', 
     alignItems: 'center', 
   }
