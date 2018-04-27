@@ -49,14 +49,13 @@ export default class Publish extends Component {
 					]}
 					renderItem = { ({item})=>this._renderItem({item}) }
 					numColumns= {3}
-					scrollEnabled = {false}
-				/>
+					scrollEnabled = {false}/>
 				</View>
 				
 				<TouchableOpacity 
-				style = { styles.button }
-				activeOpacity = { 0.6 }
-				onPress = { ()=>this.props.navigation.goBack() }>
+					style = { styles.button }
+					activeOpacity = { 0.6 }
+					onPress = { ()=>this.props.navigation.goBack() }>
 					<Text>取消</Text>
 				</TouchableOpacity>
 		</SafeAreaView>
