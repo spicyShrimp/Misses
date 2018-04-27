@@ -18,47 +18,50 @@ export default class Me extends Component {
 		headerTitle: '我的',
 	}
 
-	_renderHeader = () => {
+	_renderHeader() {
 		return (
-			<View style={ styles.header }>
+			<View style = { styles.header }>
 			</View>	
 		)
 	}
 
-	_renderItem = ({item}) => {
+	_renderItem(data) {
 		return (
 		<TouchableOpacity 
 			style={ styles.item }>
 			<Image 
-				source={ {uri: item.key} }  
-				style={ styles.itemImage }/>
+				source = { {uri: data.item.key} }  
+				style = { styles.itemImage }/>
 				<Text 
 					style = { styles.itemText }>
-					{item.title}
+					{ data.item.title }
 				</Text>
 		</TouchableOpacity>
 		)
 	}
 
-	_renderSectionItem = (data) => {
+	_renderSectionItem(data) {
 		console.log(data.section);
 		return (
 			<FlatList
 				data = { data.section.data[0].content }
 				numColumns = { numColumns }
-				renderItem = { this._renderItem }
+				renderItem = { (data)=>this._renderItem(data) }
 				style={ {backgroundColor: '#fff'} }
+				scrollEnabled = {false}
 			/>
 		)
 	}
 	
-	_renderFooter = () => {
+	_renderFooter() {
 		return (
 			<TouchableOpacity 
 				activeOpacity={0.7}
 				style={ styles.footer }>
 				<Text>好友动态</Text>
-				<Text>></Text>
+				<Image 
+					source={ {uri:'arrow_right'} }
+					style={ {width: 7, height: 12} }/>
 			</TouchableOpacity>
 		)
 	}
@@ -82,10 +85,11 @@ export default class Me extends Component {
 							]
 						}],
 					}]}
-					renderItem = {this._renderSectionItem}
+					renderItem = {(data)=>this._renderSectionItem(data)}
 					numColumns = {numColumns}
-					ListHeaderComponent = {this._renderHeader}
-					ListFooterComponent = {this._renderFooter}
+					ListHeaderComponent = { ()=>this._renderHeader() }
+					ListFooterComponent = { ()=>this._renderFooter() }
+					scrollEnabled = {true}
 				/>
 		</SafeAreaView>
 		);

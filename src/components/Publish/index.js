@@ -18,17 +18,17 @@ export default class Publish extends Component {
 		headerRight:<View/>,
 	}
 
-	_goDetail (item) {
+	_goDetail(item) {
 		console.log(item.key);
 		this.props.navigation.goBack();
 		this.props.navigation.navigate('Detail', {title: item.title});
 	}
 
-	_renderItem ({item}) {
+	_renderItem(data) {
 		return (
-		<TouchableOpacity style={ styles.item } onPress={ ()=>this._goDetail(item) }>
-			<Image source={ {uri: item.image} }  style={{width: 57, height: 57}}/>
-			<Text>{item.title}</Text>
+		<TouchableOpacity style={ styles.item } onPress={ ()=>this._goDetail(data.item) }>
+			<Image source={ {uri: data.item.image} }  style={{width: 57, height: 57}}/>
+			<Text>{ data.item.title }</Text>
 		</TouchableOpacity>
 		)
 	}
