@@ -9,6 +9,7 @@ import {
 	StyleSheet,
 	Image 
 } from 'react-native';
+import NavItem from '../Navigator/NavItem';
 import { width } from '../../configs/Device';
 
 const numColumns = 5;
@@ -16,6 +17,8 @@ const numColumns = 5;
 export default class Me extends Component {
 	static navigationOptions = {
 		headerTitle: '我的',
+		headerLeft: <NavItem source={{url: 'nav_coin'}} />,
+		headerRight: <NavItem source={{url: 'nav_setting'}} />,
 	}
 
 	data = [{
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		flexDirection: 'row',
 		alignItems: 'center',
-		paddingHorizontal: 20,
+		paddingHorizontal: 15,
 	},
 	headerUser: {
 		flex: 1, 
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		paddingHorizontal: 20,
+		paddingHorizontal: 15,
 		marginTop: 10,
 	},
 	item: {

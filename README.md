@@ -19,3 +19,8 @@ react native
 * 基础项目优化
 * 我的界面基本布局
 ![](./exhibition/3.png)
+
+4.28
+* 基础项目优化
+* 社区界面基本布局
+![](./exhibition/4.png)

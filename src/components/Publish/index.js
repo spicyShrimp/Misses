@@ -14,12 +14,12 @@ import { width, statusBarHeight, isIPhoneX } from '../../configs/Device';
 
 export default class Publish extends Component {
 	data = [
-		{key: 'video', title: '发视频', image: 'publish_video'},
-		{key: 'picture', title: '发图片', image: 'publish_picture'},
-		{key: 'text', title: '发段子', image: 'publish_text'},
-		{key: 'audio', title: '发声音', image: 'publish_audio'},
-		{key: 'link', title: '发链接', image: 'publish_link'},
-		{key: 'review', title: '音乐相册', image: 'publish_review'},
+		{key: 'publish_video', title: '发视频'},
+		{key: 'publish_picture', title: '发图片'},
+		{key: 'publish_text', title: '发段子'},
+		{key: 'publish_audio', title: '发声音'},
+		{key: 'publish_link', title: '发链接'},
+		{key: 'publish_review', title: '音乐相册'},
 	]
 
 	render() {
@@ -52,7 +52,7 @@ export default class Publish extends Component {
 				onPress={() => this._goDetail(data.item)}
 			>
 				<Image 
-					source={{uri: data.item.image}}
+					source={{uri: data.item.key}}
 					style={{width: 57, height: 57}}
 				/>
 				<Text>{data.item.title}</Text>
