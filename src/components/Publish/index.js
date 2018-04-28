@@ -40,7 +40,7 @@ export default class Publish extends Component {
 					<TouchableOpacity 
 						style={styles.button}
 						activeOpacity={0.6}
-						onPress = {() => this.props.navigation.goBack()}
+						onPress={() => this.props.navigation.goBack()}
 					>
 						<Text>取消</Text>
 					</TouchableOpacity>
@@ -64,8 +64,9 @@ export default class Publish extends Component {
 	}
 
 	_goDetail(item) {
-		this.props.navigation.goBack();
-		this.props.navigation.navigate('Detail', {title: item.title});
+		const {navigation} = this.props;
+		navigation.goBack();
+		navigation.navigate('Detail', {title: item.title});
 	}
 };
 
