@@ -20,35 +20,52 @@ export default class Me extends Component {
 
 	_renderHeader() {
 		return (
-			<View style = { styles.header }>
-			</View>	
+			<TouchableOpacity 
+				activeOpacity = { 0.7 }
+				style = { styles.header }>
+				<View style = { styles.headerUser }>
+						<Image 
+							source = { {uri: 'default_header'} } 
+							style = { { width: 50, height: 50} }/>
+						<Text
+							style = { {marginHorizontal: 10} }>
+							百思不得姐
+						</Text>
+						<Image 
+							source = { {uri: 'profile_level1'} }
+							style = { {width: 36, height: 15} }/>
+					</View>
+					<Image 
+						source = { {uri: 'arrow_right'} }
+						style = { {width: 7, height: 12} }/>
+			</TouchableOpacity>	
 		)
 	}
 
 	_renderItem(data) {
 		return (
-		<TouchableOpacity 
-			style={ styles.item }>
-			<Image 
-				source = { {uri: data.item.key} }  
-				style = { styles.itemImage }/>
-				<Text 
-					style = { styles.itemText }>
-					{ data.item.title }
-				</Text>
-		</TouchableOpacity>
+			<TouchableOpacity 
+				activeOpacity = { 0.7 }
+				style={ styles.item }>
+				<Image 
+					source = { {uri: data.item.key} }  
+					style = { styles.itemImage }/>
+					<Text 
+						style = { styles.itemText }>
+						{ data.item.title }
+					</Text>
+			</TouchableOpacity>
 		)
 	}
 
 	_renderSectionItem(data) {
-		console.log(data.section);
 		return (
 			<FlatList
 				data = { data.section.data[0].content }
 				numColumns = { numColumns }
 				renderItem = { (data)=>this._renderItem(data) }
 				style={ {backgroundColor: '#fff'} }
-				scrollEnabled = {false}
+				scrollEnabled = { false }
 			/>
 		)
 	}
@@ -56,12 +73,12 @@ export default class Me extends Component {
 	_renderFooter() {
 		return (
 			<TouchableOpacity 
-				activeOpacity={0.7}
-				style={ styles.footer }>
+				activeOpacity = { 0.7 }
+				style = { styles.footer }>
 				<Text>好友动态</Text>
 				<Image 
-					source={ {uri:'arrow_right'} }
-					style={ {width: 7, height: 12} }/>
+					source = { {uri:'arrow_right'} }
+					style = { {width: 7, height: 12} }/>
 			</TouchableOpacity>
 		)
 	}
@@ -85,14 +102,14 @@ export default class Me extends Component {
 							]
 						}],
 					}]}
-					renderItem = {(data)=>this._renderSectionItem(data)}
-					numColumns = {numColumns}
+					renderItem = { (data)=>this._renderSectionItem(data) }
+					numColumns = { numColumns }
 					ListHeaderComponent = { ()=>this._renderHeader() }
 					ListFooterComponent = { ()=>this._renderFooter() }
-					scrollEnabled = {true}
+					scrollEnabled = { true }
 				/>
 		</SafeAreaView>
-		);
+		)
 	}
 };
 
@@ -104,7 +121,14 @@ const styles = StyleSheet.create({
 		height: 100,
 		backgroundColor: '#fff',
 		marginBottom: 10,
-
+		flexDirection: 'row',
+		alignItems: 'center',
+		paddingHorizontal: 20,
+	},
+	headerUser: {
+		flex: 1, 
+		flexDirection: 'row', 
+		alignItems: 'center',
 	},
 	footer: {
 		height: 50,
