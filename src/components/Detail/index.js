@@ -9,7 +9,7 @@ import {
 import { width, height, isIPhoneX } from '../../configs/Device';
 
 export default class Detail extends Component {
-	static navigationOptions = ({ navigation }) => {
+	static navigationOptions = ({navigation}) => {
 		const { params } = navigation.state;
 		return {
 			headerTitle: params ? params.title : '百思不得姐',

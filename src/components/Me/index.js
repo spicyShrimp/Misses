@@ -33,15 +33,15 @@ export default class Me extends Component {
 
 	render() {
 		return (
-		<SafeAreaView style={styles.container}>
-			<SectionList
-				sections={[{data: this.data}]}
-				renderItem={(item)=>this._renderSectionItem(item)}
-				numColumns={numColumns}
-				ListHeaderComponent={()=>this._renderHeader()}
-				ListFooterComponent={()=>this._renderFooter()}
-			/>
-		</SafeAreaView>
+			<SafeAreaView style={styles.container}>
+				<SectionList
+					sections={[{data: this.data}]}
+					renderItem={(item)=>this._renderSectionItem(item)}
+					numColumns={numColumns}
+					ListHeaderComponent={()=>this._renderHeader()}
+					ListFooterComponent={()=>this._renderFooter()}
+				/>
+			</SafeAreaView>
 		)
 	}
 

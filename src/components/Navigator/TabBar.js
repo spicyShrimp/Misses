@@ -6,7 +6,7 @@ import {
     SafeAreaView, 
     TouchableOpacity, 
 } from 'react-native';
-import { width, height, isIPhoneX} from '../../configs/Device';
+import { width, height, isIPhoneX } from '../../configs/Device';
 
 export default class TabBar extends Component {
     renderItem(route, index) {
@@ -38,7 +38,7 @@ export default class TabBar extends Component {
                     >
                     <View style={styles.tabItem}>
                         {this.props.renderIcon(TabScene)}
-                        <Text style={{ color, fontSize: 10 }}>
+                        <Text style={{color, fontSize: 10}}>
                             {this.props.getLabel(TabScene)}
                         </Text>
                     </View>

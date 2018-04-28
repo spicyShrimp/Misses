@@ -13,10 +13,6 @@ import {
 import { width, statusBarHeight, isIPhoneX } from '../../configs/Device';
 
 export default class Publish extends Component {
-	static navigationOptions = {
-		headerTitle: 'Detail',
-		headerRight:<View/>,
-	}
 	data = [
 		{key: 'video', title: '发视频', image: 'publish_video'},
 		{key: 'picture', title: '发图片', image: 'publish_picture'},
@@ -38,8 +34,8 @@ export default class Publish extends Component {
 						/>
 					</View>
 					<TouchableOpacity 
+						activeOpacity={0.7}
 						style={styles.button}
-						activeOpacity={0.6}
 						onPress={() => this.props.navigation.goBack()}
 					>
 						<Text>取消</Text>
@@ -51,6 +47,7 @@ export default class Publish extends Component {
 	_renderItem(data) {
 		return (
 			<TouchableOpacity 
+				activeOpacity={0.7}
 				style={styles.item} 
 				onPress={() => this._goDetail(data.item)}
 			>
