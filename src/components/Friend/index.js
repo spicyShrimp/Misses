@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     },
     itemTitle: {
         fontSize: 16,
+        color: '#000',
     },
     itemSubTitle: {
         color: '#aaa',
