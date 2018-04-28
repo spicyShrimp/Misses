@@ -12,16 +12,17 @@ export default class New extends Component {
 		headerTitle: '百思不得姐', 
 	}
 	render() {
+		const { navigation} = this.props;
 		return (
-		<SafeAreaView 
-			style = { styles.container }>
-			<Text>New</Text>
-			<TouchableOpacity 
-				style = { styles.button } 
-				onPress = { ()=>this.props.navigation.navigate('Detail') }>
-				<Text>Go Detail</Text>
-			</TouchableOpacity>
-		</SafeAreaView>
+			<SafeAreaView style={styles.container}>
+				<Text>New</Text>
+				<TouchableOpacity 
+					style={styles.button} 
+					onPress={() => navigation.navigate('Detail')}
+				>
+					<Text>Go Detail</Text>
+				</TouchableOpacity>
+			</SafeAreaView>
 		);
 	}
 };

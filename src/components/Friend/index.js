@@ -12,10 +12,10 @@ class SearchHeader extends Component {
     render () {
         return (
         <TextInput
-            placeholder = '搜索' 
-            clearButtonMode = 'while-editing'
-            underlineColorAndroid = 'transparent'
-            style = { styles.input }
+            placeholder='搜索' 
+            clearButtonMode='while-editing'
+            underlineColorAndroid='transparent'
+            style={styles.input}
         />
         )
     }
@@ -23,16 +23,16 @@ class SearchHeader extends Component {
 
 export default class Friend extends Component {
     static navigationOptions = {
-        headerTitle: <SearchHeader/>,
+        headerTitle: <SearchHeader />,
     }
     render() {
         return (
-        <SafeAreaView 
-            style = { styles.container }>
+        <SafeAreaView style={styles.container}>
             <Text>Friend</Text>
             <TouchableOpacity 
-                style = { styles.button } 
-                onPress = { ()=>this.props.navigation.navigate('Detail') }>
+                style={styles.button} 
+                onPress={()=>this.props.navigation.navigate('Detail')}
+            >
                 <Text>Go Detail</Text>
             </TouchableOpacity>
         </SafeAreaView>

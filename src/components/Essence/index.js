@@ -13,29 +13,30 @@ import { width } from '../../configs/Device';
 class Essence extends Component {
 	static navigationOptions = {
 		headerTitle: '百思不得姐',
-		// headerRight: <View/>,
+		// headerRight: <View />,
 	};
 	render() {
 		const { counter, addAction, minAction } = this.props;
 		return (
-		<SafeAreaView 
-			style = { styles.container }>
-			<Text>{ counter }</Text>
-			<View 
-				style = { styles.buttons }>
+		<SafeAreaView style={styles.container}>
+			<Text>{counter}</Text>
+			<View style={styles.buttons}>
 				<TouchableOpacity 
-					style={ styles.button } 
-					onPress={ () => addAction() }>
+					style={styles.button} 
+					onPress={() => addAction()}
+				>
 					<Text>Add</Text>
 				</TouchableOpacity> 
 				<TouchableOpacity 
-					style={ styles.button } 
-					onPress={ () => minAction() }>
+					style={styles.button} 
+					onPress={() => minAction()}
+				>
 					<Text>Min</Text>
 				</TouchableOpacity>
 				<TouchableOpacity 
-					style={ styles.button } 
-					onPress={ () => this.props.navigation.navigate('Detail') }>
+					style={styles.button} 
+					onPress={() => this.props.navigation.navigate('Detail')}
+				>
 					<Text>Go Detail</Text>
 				</TouchableOpacity>
 			</View>

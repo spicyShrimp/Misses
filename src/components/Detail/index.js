@@ -13,21 +13,21 @@ export default class Detail extends Component {
 		const { params } = navigation.state;
 		return {
 			headerTitle: params ? params.title : '百思不得姐',
-			headerRight: <View/>
+			headerRight: <View />
 		}
 	};
 
 render() {
     return (
-		<SafeAreaView 
-			style = { styles.container }>
-				<Text>详情</Text>
-				<TouchableOpacity 
-					style = { styles.button }
-					activeOpacity = { 0.6 }
-					onPress = { () => this.props.navigation.goBack() }>
-					<Text>返回</Text>
-				</TouchableOpacity>
+		<SafeAreaView style= {styles.container}>
+			<Text>详情</Text>
+			<TouchableOpacity 
+				style = { styles.button }
+				activeOpacity = { 0.6 }
+				onPress = { () => this.props.navigation.goBack() }
+			>
+				<Text>返回</Text>
+			</TouchableOpacity>
 		</SafeAreaView>
     );
   }

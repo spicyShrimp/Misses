@@ -18,54 +18,81 @@ export default class Me extends Component {
 		headerTitle: '我的',
 	}
 
+	data = [{
+		content: [
+			{key: 'mine_icon_hot', title: '排行榜'},
+			{key: 'mine_icon_preview', title: '审帖'},
+			{key: 'mine_icon_manhua', title: '漫画'},
+			{key: 'mine_icon_activity', title: '我的收藏'},
+			{key: 'mine_icon_nearby', title: '附近'},
+			{key: 'mine_icon_random', title: '随机穿越'},
+			{key: 'mine_icon_feedback', title: '意见反馈'},
+			{key: 'mine_icon_more', title: '更多'},
+		]
+	}]
+
+	render() {
+		return (
+		<SafeAreaView style={styles.container}>
+			<SectionList
+				sections={[{data: this.data}]}
+				renderItem={(item)=>this._renderSectionItem(item)}
+				numColumns={numColumns}
+				ListHeaderComponent={()=>this._renderHeader()}
+				ListFooterComponent={()=>this._renderFooter()}
+			/>
+		</SafeAreaView>
+		)
+	}
+
 	_renderHeader() {
 		return (
 			<TouchableOpacity 
-				activeOpacity = { 0.7 }
-				style = { styles.header }>
-				<View style = { styles.headerUser }>
-						<Image 
-							source = { {uri: 'default_header'} } 
-							style = { { width: 50, height: 50} }/>
-						<Text
-							style = { {marginHorizontal: 10} }>
-							百思不得姐
-						</Text>
-						<Image 
-							source = { {uri: 'profile_level1'} }
-							style = { {width: 36, height: 15} }/>
-					</View>
+				activeOpacity={0.7}
+				style={styles.header}
+			>
+				<View style={styles.headerUser}>
 					<Image 
-						source = { {uri: 'arrow_right'} }
-						style = { {width: 7, height: 12} }/>
+						source={{uri: 'default_header'}} 
+						style={{width: 50, height: 50}}
+					/>
+					<Text style={{marginHorizontal: 10}}>百思不得姐</Text>
+					<Image 
+						source={{uri: 'profile_level1'}}
+						style={{width: 36, height: 15}}
+					/>
+				</View>
+				<Image 
+					source={{uri: 'arrow_right'}}
+					style={{width: 7, height: 12}}
+				/>
 			</TouchableOpacity>	
 		)
 	}
 
-	_renderItem(data) {
+	_renderItem({item}) {
 		return (
 			<TouchableOpacity 
-				activeOpacity = { 0.7 }
-				style={ styles.item }>
+				activeOpacity={0.7}
+				style={styles.item}
+			>
 				<Image 
-					source = { {uri: data.item.key} }  
-					style = { styles.itemImage }/>
-					<Text 
-						style = { styles.itemText }>
-						{ data.item.title }
-					</Text>
+					source={{uri: item.key}}  
+					style={styles.itemImage}
+				/>
+				<Text style={styles.itemText}>{item.title}</Text>
 			</TouchableOpacity>
 		)
 	}
 
-	_renderSectionItem(data) {
+	_renderSectionItem({section}) {
 		return (
 			<FlatList
-				data = { data.section.data[0].content }
-				numColumns = { numColumns }
-				renderItem = { (data)=>this._renderItem(data) }
-				style={ {backgroundColor: '#fff'} }
-				scrollEnabled = { false }
+				data={section.data[0].content}
+				numColumns={numColumns}
+				renderItem={(item)=>this._renderItem(item)}
+				style={{backgroundColor: '#fff'}}
+				scrollEnabled={false}
 			/>
 		)
 	}
@@ -73,42 +100,15 @@ export default class Me extends Component {
 	_renderFooter() {
 		return (
 			<TouchableOpacity 
-				activeOpacity = { 0.7 }
-				style = { styles.footer }>
+				activeOpacity={0.7}
+				style={styles.footer}
+			>
 				<Text>好友动态</Text>
 				<Image 
-					source = { {uri:'arrow_right'} }
-					style = { {width: 7, height: 12} }/>
-			</TouchableOpacity>
-		)
-	}
-
-	render() {
-		return (
-		<SafeAreaView 
-			style = { styles.container }>
-			<SectionList
-					sections = {[{
-						data: [{
-							content: [
-								{key: 'mine_icon_hot', title: '排行榜'},
-								{key: 'mine_icon_preview', title: '审帖'},
-								{key: 'mine_icon_manhua', title: '漫画'},
-								{key: 'mine_icon_activity', title: '我的收藏'},
-								{key: 'mine_icon_nearby', title: '附近'},
-								{key: 'mine_icon_random', title: '随机穿越'},
-								{key: 'mine_icon_feedback', title: '意见反馈'},
-								{key: 'mine_icon_more', title: '更多'},
-							]
-						}],
-					}]}
-					renderItem = { (data)=>this._renderSectionItem(data) }
-					numColumns = { numColumns }
-					ListHeaderComponent = { ()=>this._renderHeader() }
-					ListFooterComponent = { ()=>this._renderFooter() }
-					scrollEnabled = { true }
+					source={{uri:'arrow_right'}}
+					style={{width: 7, height: 12}}
 				/>
-		</SafeAreaView>
+			</TouchableOpacity>
 		)
 	}
 };

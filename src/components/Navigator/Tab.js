@@ -27,10 +27,10 @@ export default TabNavigator(
         Essence: { 
             screen: Essence, 
             navigationOptions: {  
-                tabBarIcon: ({ focused }) => (  
+                tabBarIcon: ({focused}) => (  
                     <Image 
-                        source = { {uri: focused ? 'tabbar_essence_click' : 'tabbar_essence'} }  
-                        style = { styles.item }  
+                        source={{uri: focused ? 'tabbar_essence_click' : 'tabbar_essence'}}  
+                        style={styles.item}  
                     />  
                 ),
                 tabBarLabel: '精华',  
@@ -39,22 +39,22 @@ export default TabNavigator(
         New: { 
             screen: New,
             navigationOptions: {  
-                tabBarIcon: ({ focused }) => (  
+                tabBarIcon: ({focused}) => (  
                     <Image 
-                        source = { {uri: focused ? 'tabbar_new_click' : 'tabbar_new'} }  
-                        style = { styles.item }  
+                        source={{uri: focused ? 'tabbar_new_click' : 'tabbar_new'}}  
+                        style={styles.item}  
                     />  
                 ),
                 tabBarLabel: '最新',    
             } 
         },
-        PublishPlaceHolder: { 
+        PublishPlaceHolder: { //占位用,此页面实际不会去调用
             screen: Component, 
             navigationOptions: {
                 tabBarIcon: ({ focused }) => (
                     <Image
-                        source = { {uri: focused ? 'tabbar_publish_click' : 'tabbar_publish'} }  
-                        style = { styles.centerItem }  
+                        source={{uri: focused ? 'tabbar_publish_click' : 'tabbar_publish'}}  
+                        style={styles.centerItem}  
                     /> 
                 ), 
             } 
@@ -62,10 +62,10 @@ export default TabNavigator(
         Friend: { 
             screen: Friend, 
             navigationOptions: {  
-                tabBarIcon: ({ focused }) => (  
+                tabBarIcon: ({focused}) => (  
                     <Image 
-                    source = { {uri: focused ? 'tabbar_friend_click' : 'tabbar_friend'} }  
-                    style = { styles.item }  
+                        source={{uri: focused ? 'tabbar_friend_click' : 'tabbar_friend'}}  
+                        style={styles.item}  
                     />  
                 ),
                 tabBarLabel: '社区',  
@@ -74,10 +74,10 @@ export default TabNavigator(
         Me: { 
             screen: Me,
             navigationOptions: {
-                tabBarIcon: ({ focused }) => (  
+                tabBarIcon: ({focused}) => (  
                     <Image 
-                    source = { {uri: focused ? 'tabbar_me_click' : 'tabbar_me'} }  
-                    style = { styles.item }  
+                        source={{uri: focused ? 'tabbar_me_click' : 'tabbar_me'}}  
+                        style={styles.item}
                     />  
                 ),
                 tabBarLabel: '我',   
@@ -85,7 +85,7 @@ export default TabNavigator(
         },
     },
     {
-        tabBarComponent:props => <TabBar {...props}/>,
+        tabBarComponent:props => <TabBar {...props} />,// 自定义tab样式
         tabBarPosition: 'bottom',
         swipeEnabled: false,
         animationEnabled: false,

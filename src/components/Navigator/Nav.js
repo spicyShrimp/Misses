@@ -15,6 +15,7 @@ import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 import { ios, statusBarHeight } from '../../configs/Device';
 
+//适配android导航栏样式和iOS一致
 const navigationOptions = {
     headerStyle: { 
         borderBottomWidth: 0,
