@@ -28,6 +28,13 @@ export default class Friend extends Component {
         headerTitle: <SearchHeader />,
     }
 
+    constructor(props){
+        super(props);
+        this.state = {
+            refreshing: false
+        }
+    }
+
     data = [
 		{key: '萌宠', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343'},
 		{key: '来唱歌吧', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '好声音都在这里了! 快来秀出你的歌声吧~'},
@@ -39,7 +46,15 @@ export default class Friend extends Component {
         {key: '爆笑Gif', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
         {key: '王者荣耀', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
         {key: '美食频道', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-	]
+    ]
+    
+    componentDidMount() {
+        this._refresh();
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timer);
+    }
 
     render() {
         return (
@@ -48,11 +63,23 @@ export default class Friend extends Component {
                     data={this.data}
                     renderItem={(item) => this._renderItem(item)}
                     ItemSeparatorComponent={()=>this._ItemSeparatorComponent()}
+                    refreshing={this.state.refreshing}
+                    onRefresh={()=>this._refresh()}
                 />
             </SafeAreaView>
         );
     }
 
+    _refresh() {
+        this.setState({
+            refreshing: true,
+        })
+        this.timer = setTimeout(() => {
+            this.setState({
+                refreshing: false,
+            })
+        }, 5000);
+    }
 
     _ItemSeparatorComponent() {
         return (

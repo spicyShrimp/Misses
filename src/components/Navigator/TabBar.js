@@ -21,6 +21,7 @@ export default class TabBar extends Component {
         if (index === 2) {
             return (
                 <TouchableOpacity
+                    key={route.key} 
     				activeOpacity={0.7}
                     style={styles.tabItem} 
                     onPress={() => navigation.navigate('Publish')}
@@ -33,6 +34,7 @@ export default class TabBar extends Component {
         } else {
             return (
                 <TouchableOpacity
+                    key={route.key} 
                     style={styles.tabItem} 
                     onPress={() => jumpToIndex(index)}
                     >
