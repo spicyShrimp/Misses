@@ -7,13 +7,16 @@ import {
 	StyleSheet,
 } from 'react-native';
 import { width, height, isIPhoneX } from '../../configs/Device';
+import NavBack from '../Navigator/NavBack';
 
 export default class Detail extends Component {
 	static navigationOptions = ({navigation}) => {
 		const { params } = navigation.state;
 		return {
+			tabBarVisible: false,
 			headerTitle: params ? params.title : '百思不得姐',
-			headerRight: <View />
+			headerLeft: <NavBack />,
+			headerRight: <View />,
 		}
 	};
 

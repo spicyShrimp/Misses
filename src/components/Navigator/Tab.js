@@ -91,6 +91,7 @@ export default TabNavigator(
         animationEnabled: false,
         lazy: true,
         tabBarOptions,
+        backBehavior: 'none', 
     }
 )
 

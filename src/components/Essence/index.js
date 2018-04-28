@@ -12,6 +12,7 @@ import { width } from '../../configs/Device';
 
 class Essence extends Component {
 	static navigationOptions = {
+		tabBarVisible: true,
 		headerTitle: '百思不得姐',
 	};
 	render() {

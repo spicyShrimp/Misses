@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { 
     View, 
     Image, 
-    Text, 
-    Platform, 
-    StatusBar, 
+    Text,
+    TouchableOpacity, 
     Easing, 
     Animated
 } from 'react-native';
 import Tab from './Tab';
 import Detail from '../Detail';
 import Publish from '../Publish';
+import { connect } from 'react-redux';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 import { ios, statusBarHeight } from '../../configs/Device';
@@ -44,11 +44,11 @@ const Main = StackNavigator(
         headerMode: 'screen',
         navigationOptions,
         transitionConfig: () => ({ 
-            transitionSpec: {
-                duration: 250,
-                easing: Easing.linear,
-                timing: Animated.timing,
-            },
+            // transitionSpec: {
+            //     duration: 250,
+            //     easing: Easing.linear,
+            //     timing: Animated.timing,
+            // },
             screenInterpolator: CardStackStyleInterpolator.forHorizontal,
         })
     }
