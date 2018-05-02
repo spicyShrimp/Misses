@@ -41,10 +41,10 @@ class Friend extends Component {
             <SafeAreaView style={styles.container}>
                 <FlatList
                     data={data}
-                    renderItem={(props) => this._renderItem(props)}
+                    renderItem={(item) => this._renderItem(item)}
                     ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
                     refreshing={refreshing}
-                    onRefresh={()=>fetchSubScribeData(data)}
+                    onRefresh={() => fetchSubScribeData(data)}
                     keyExtractor={(item, index) => this._keyExtractor(item, index)}
                 />
             </SafeAreaView>

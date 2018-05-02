@@ -39,7 +39,7 @@ export default class Me extends Component {
 			<SafeAreaView style={styles.container}>
 				<SectionList
 					sections={[{data: this.data}]}
-					renderItem={(props)=>this._renderSectionItem(props)}
+					renderItem={(item)=>this._renderSectionItem(item)}
 					numColumns={numColumns}
 					ListHeaderComponent={()=>this._renderHeader()}
 					ListFooterComponent={()=>this._renderFooter()}
