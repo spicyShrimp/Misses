@@ -1,3 +1,7 @@
+/**
+ * wangrui
+ */
+
 import { FetchType } from '../../configs/actionTypes';
 
 fetchSubScribe = (refreshing, data) => ({
