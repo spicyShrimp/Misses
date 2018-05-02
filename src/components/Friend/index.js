@@ -9,6 +9,8 @@ import {
     FlatList,
     Image,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { fetchSubScribeData } from '../../actions/Friend'
 
 class SearchHeader extends Component {
     render () {
@@ -23,68 +25,40 @@ class SearchHeader extends Component {
     }
 }
 
-export default class Friend extends Component {
+class Friend extends Component {
     static navigationOptions = {
         headerTitle: <SearchHeader />,
     }
 
-    constructor(props){
-        super(props);
-        this.state = {
-            refreshing: false
-        }
-    }
-
-    data = [
-		{key: '萌宠', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343'},
-		{key: '来唱歌吧', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '好声音都在这里了! 快来秀出你的歌声吧~'},
-		{key: '影视分享', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-		{key: '声音控', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-		{key: '反馈中心', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-        {key: '吃鸡', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-        {key: '感情倾诉', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-        {key: '爆笑Gif', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-        {key: '王者荣耀', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-        {key: '美食频道', image: 'publish_review', subTitle: '今日更新110 | 当前在线 343', desc: '观影爱好者欢乐多!'},
-    ]
-    
     componentDidMount() {
-        this._refresh();
-    }
-
-    componentWillUnmount() {
-        clearTimeout(this.timer);
+        const {fetchSubScribeData} = this.props;
+        fetchSubScribeData();
     }
 
     render() {
+        const {data, refreshing, fetchSubScribeData} = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
-                    data={this.data}
+                    data={data}
                     renderItem={(props) => this._renderItem(props)}
                     ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
-                    refreshing={this.state.refreshing}
-                    onRefresh={()=>this._refresh()}
+                    refreshing={refreshing}
+                    onRefresh={()=>fetchSubScribeData()}
+                    keyExtractor={(item, index) => this._keyExtractor(item, index)}
                 />
             </SafeAreaView>
         );
-    }
-
-    _refresh() {
-        this.setState({
-            refreshing: true,
-        })
-        this.timer = setTimeout(() => {
-            this.setState({
-                refreshing: false,
-            })
-        }, 5000);
     }
 
     _ItemSeparatorComponent() {
         return (
             <View style={{height: 0.5, marginLeft: 15, backgroundColor: 'rgba(100,100, 100, 0.2)'}} />
         )
+    }
+
+    _keyExtractor(item, index) {
+        return item.theme_name + index;
     }
 
     _renderItem({item}) {
@@ -95,14 +69,19 @@ export default class Friend extends Component {
                 onPress={() => this.goToDetail(item)}
 			>
 				<Image 
-					source={{uri: item.image}}  
+					source={{uri: item.image_list}}  
 					style={{width: 60, height: 60}}
 				/>
                 
                 <View style={styles.itemContent}>
-                    <Text style={styles.itemTitle}>{item.key}</Text>
-                    <Text style={styles.itemSubTitle}>{item.subTitle}</Text>
-                    <Text style={item.desc ? styles.itemDesc: {height: 0}}>{item.desc}</Text>
+                    <Text style={styles.itemTitle}>{item.theme_name}</Text>
+                    <Text style={styles.itemSubTitle}>今日更新 {item.today_topic_num} | 当前在线 {item.visit}</Text>
+                    <Text 
+                        style={item.info ? styles.itemDesc: {height: 0}}
+                        numberOfLines={1}
+                    >
+                        {item.info.replace('\u3000', '').split('\r\n')[0]}
+                    </Text>
                 </View>
 
 				<Image 
@@ -161,4 +140,15 @@ const styles = StyleSheet.create({
         fontSize: 12,
     }
 })
+
+const mapStateToProps = state => ({
+    refreshing: state.Friend.refreshing,
+    data: state.Friend.data,
+});
+
+const mapDispatchToProps = {
+    fetchSubScribeData,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Friend);
   

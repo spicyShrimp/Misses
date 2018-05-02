@@ -1,4 +1,4 @@
-import Nav from '../components/Navigator/Nav';
+import Nav from '../../components/Navigator/Nav';
 import { NavigationActions } from 'react-navigation';
 
 function routeIsInCurrentState(state, routeName) {

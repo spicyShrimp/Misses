@@ -1,4 +1,3 @@
-export const countType = {
-    ADD_COUNT: 'add_count',
-    MIN_COUNT: 'min_count',
+export const FetchType = {
+    FETCH_SUBSCRIBE: 'FETCH_SUBSCRIBE',
 }

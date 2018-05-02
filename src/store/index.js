@@ -7,15 +7,16 @@ import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-hel
 
 const navigator = createReactNavigationReduxMiddleware(
   "root",
-  state => state.nav
+  state => state.Navigator
 );
-
-const middlewares = [thunk.withExtraArgument(),navigator];
 
 // if (__DEV__) {
 //   middlewares.push(logger);
 // }
 
 export default createStore(reducers, composeWithDevTools(
-  applyMiddleware(...middlewares),
+  applyMiddleware(
+    thunk,
+    navigator,
+  ),
 ))

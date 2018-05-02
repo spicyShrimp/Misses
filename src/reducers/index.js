@@ -1,8 +1,8 @@
-import countReducer from './countReducer';
-import navigatorReducer from './navigatorReducer';
+import Navigator from './Navigator';
+import Friend from './Friend';
 import { combineReducers } from 'redux';
 
 export default combineReducers({
-    count: countReducer,
-    nav: navigatorReducer,
+    Navigator,
+    Friend,
 })

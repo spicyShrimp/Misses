@@ -31,8 +31,8 @@ class App extends Component {
     }
 
     onBackAndroid = () => {
-        const { dispatch, nav } = this.props;
-        if (nav.routes.length > 1) {
+        const { dispatch, Navigator } = this.props;
+        if (Navigator.routes.length > 1) {
             dispatch( NavigationActions.back() );
             return true;
         }
@@ -45,7 +45,7 @@ class App extends Component {
     };
 
     render() {
-        const { dispatch, nav } = this.props;
+        const { dispatch, Navigator } = this.props;
         return (
             <View style={{flex: 1}}>
                 <StatusBar 
@@ -54,7 +54,7 @@ class App extends Component {
                     barStyle='light-content'
                 />
                 <Nav navigation={addNavigationHelpers({
-                    state: nav,
+                    state: Navigator,
                     dispatch,
                     addListener,
                     })}
@@ -66,7 +66,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-    nav: state.nav
+    Navigator: state.Navigator,
 });
 
 export default connect(mapStateToProps)(App);
