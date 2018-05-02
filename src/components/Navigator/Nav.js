@@ -29,7 +29,7 @@ const StackOptions = ({navigation}) => {
         headerTintColor: '#fff',
         headerBackTitle: null,
         gesturesEnabled: false,
-    }
+    };
 
     if (navigation.state.routeName === 'Tab') {
         return navigationOptions;
@@ -77,8 +77,8 @@ export default StackNavigator(
         },
     },
     {
-        // mode: 'modal',
+        mode: 'modal',
         headerMode: 'none',
-        transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forFade })
+        // transitionConfig: () => ({ screenInterpolator: CardStackStyleInterpolator.forFade })
     }
 )
