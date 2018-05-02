@@ -85,13 +85,12 @@ export default TabNavigator(
         },
     },
     {
-        tabBarComponent:props => <TabBar {...props} />,// 自定义tab样式
+        tabBarComponent:(props) => <TabBar {...props} />,// 自定义tab样式
         tabBarPosition: 'bottom',
         swipeEnabled: false,
         animationEnabled: false,
         lazy: true,
         tabBarOptions,
-        backBehavior: 'none', 
     }
 )
 

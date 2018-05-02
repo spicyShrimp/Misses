@@ -61,8 +61,8 @@ export default class Friend extends Component {
             <SafeAreaView style={styles.container}>
                 <FlatList
                     data={this.data}
-                    renderItem={(item) => this._renderItem(item)}
-                    ItemSeparatorComponent={()=>this._ItemSeparatorComponent()}
+                    renderItem={(props) => this._renderItem(props)}
+                    ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
                     refreshing={this.state.refreshing}
                     onRefresh={()=>this._refresh()}
                 />

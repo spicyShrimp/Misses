@@ -13,10 +13,7 @@ export default class Detail extends Component {
 	static navigationOptions = ({navigation}) => {
 		const { params } = navigation.state;
 		return {
-			tabBarVisible: false,
 			headerTitle: params ? params.title : '百思不得姐',
-			headerLeft: <NavBack />,
-			headerRight: <View />,
 		}
 	};
 
