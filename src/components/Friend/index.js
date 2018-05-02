@@ -31,8 +31,8 @@ class Friend extends Component {
     }
 
     componentDidMount() {
-        const {fetchSubScribeData} = this.props;
-        fetchSubScribeData();
+        const {data, fetchSubScribeData} = this.props;
+        fetchSubScribeData(data);
     }
 
     render() {
@@ -44,7 +44,7 @@ class Friend extends Component {
                     renderItem={(props) => this._renderItem(props)}
                     ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
                     refreshing={refreshing}
-                    onRefresh={()=>fetchSubScribeData()}
+                    onRefresh={()=>fetchSubScribeData(data)}
                     keyExtractor={(item, index) => this._keyExtractor(item, index)}
                 />
             </SafeAreaView>

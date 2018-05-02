@@ -1,20 +1,18 @@
 import { FetchType } from '../../configs/actionTypes';
 
-function fetchSubScribe(data, refreshing) {
-    return {
-        type: FetchType.FETCH_SUBSCRIBE,
-        data,
-        refreshing,
-    };
-}
+fetchSubScribe = (refreshing, data) => ({
+    type: FetchType.FETCH_SUBSCRIBE,
+    refreshing,
+    data,
+})
 
-export function fetchSubScribeData() {
+export function fetchSubScribeData(data) {
     return dispatch => {
-        dispatch(fetchSubScribe(null, true));
+        dispatch(fetchSubScribe(true, data));
         return fetch('http://d.api.budejie.com/forum/subscribe/bs0315-iphone-4.5.9.json')
             .then((response) => response.json())
             .then((jsonData) => {
-                dispatch(fetchSubScribe(jsonData.list, false));
+                dispatch(fetchSubScribe(false, jsonData.list));  
             });
     }
     

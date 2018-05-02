@@ -8,7 +8,8 @@ const initState = {
 export default (state = initState, action) => {
     switch (action.type) {
         case FetchType.FETCH_SUBSCRIBE:
-            return {...state,
+            return {
+                ...state,
                 data: action.data,
                 refreshing: action.refreshing,
             }
