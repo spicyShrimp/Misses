@@ -48,33 +48,28 @@ class Recommend extends Component {
     }
 
     _renderItemContent(item) {
+        let image, imageHeight;
+        const imageWidth = width - 20;
         if (item.type === 'gif') {
+            image = item.gif.images[0];
+            imageHeight = imageWidth / item.gif.width * item.gif.height;
+        }
+        if (item.type === 'image') {
+            image = item.image.big[0];
+            imageHeight = imageWidth / item.image.width * item.image.height;
+        }
+        if (item.type === 'video') {
+            image = item.video.thumbnail[0];
+            imageHeight = imageWidth / item.video.width * item.video.height;
+        }
+
+        if (image != undefined || image != null) {
             return (
                 <View>
                     <Text style={styles.itemText}>{item.text}</Text>
-                    <Image 
-                        source={{uri: item.gif.images[0]}}
-                        style={{width: width-20, height: (width-20) / item.gif.width * item.gif.height}} 
-                    />
-                </View>
-            )
-        } else if (item.type === 'image') {
-            return (
-                <View>
-                    <Text style={styles.itemText}>{item.text}</Text>
-                    <Image 
-                        source={{uri: item.image.big[0]}}
-                        style={{width: width-20, height: (width-20) / item.image.width * item.image.height}} 
-                    />
-                </View>
-            )
-        } else if (item.type === 'video') {
-            return (
-                <View>
-                    <Text style={styles.itemText}>{item.text}</Text>
-                    <Image 
-                        source={{uri: item.video.thumbnail[0]}}
-                        style={{width: width-20, height: (width-20) / item.video.width * item.video.height}} 
+                    <Image
+                        source={{uri: image}}
+                        style={{width: imageWidth, height: imageHeight}}
                     />
                 </View>
             )
@@ -86,6 +81,7 @@ class Recommend extends Component {
             )
         }
     }
+
 
     _renderItem({item}) {
         return (
