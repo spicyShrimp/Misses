@@ -40,7 +40,7 @@ class Recommend extends Component {
 
     _ItemSeparatorComponent() {
         return (
-            <View style={{height: 0.5, marginLeft: 15, backgroundColor: 'rgba(100,100, 100, 0.2)'}} />
+            <View style={{height: 0.5, backgroundColor: 'rgba(100,100, 100, 0.2)'}} />
         )
     }
 
@@ -56,8 +56,8 @@ class Recommend extends Component {
                     style={styles.item}
                     onPress={() => this.goToDetail(item)}
                 >
-                    <View style={styles.itemContent}>
-                        <Text style={styles.itemTitle}>{item.text}</Text>
+                    <View style={styles.itemText}>
+                        <Text>{item.text}</Text>
                     </View>
                 </TouchableOpacity>
             )
@@ -68,9 +68,28 @@ class Recommend extends Component {
                     style={styles.item}
                     onPress={() => this.goToDetail(item)}
                 >
-                    <Image 
-                        source={{uri: item.gif.images[0]}}
-                        style={{width: item.gif.width, height: item.gif.height}} />
+                    <View style={styles.itemImage}>
+                        <Image 
+                            source={{uri: item.gif.images[0]}}
+                            style={{width: width-20, height: width / item.gif.width * item.gif.height}} 
+                        />
+                    </View>
+                </TouchableOpacity>
+            )
+        } else if (item.type === 'video') {
+            return (
+                <TouchableOpacity 
+                    activeOpacity={0.7}
+                    style={styles.item}
+                    onPress={() => this.goToDetail(item)}
+                >
+                    <View style={styles.itemVideo}>
+                        <Text style={{marginBottom: 10}}>{item.text}</Text>
+                        <Image 
+                            source={{uri: item.video.thumbnail[0]}}
+                            style={{width: width-20, height: width / item.video.width * item.video.height}} 
+                        />
+                    </View>
                 </TouchableOpacity>
             )
         } else {
@@ -80,8 +99,8 @@ class Recommend extends Component {
                     style={styles.item}
                     onPress={() => this.goToDetail(item)}
                 >
-                    <View style={styles.itemContent}>
-                        <Text style={styles.itemTitle}>{item.text}</Text>
+                    <View style={styles.itemText}>
+                        <Text>{item.text}</Text>
                     </View>
                 </TouchableOpacity>
             )
@@ -98,44 +117,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1, 
     },
-    input: {
-        flex: 1, 
-        height: 30,
-        padding: 0,
-        paddingLeft: 10,
-        marginHorizontal: 10, 
-        borderRadius: 5,
-        backgroundColor: '#fff',
-    },
     item: {
-        height: 80,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        paddingHorizontal: 15,
+        // alignItems: 'center',
+        // backgroundColor: '#fff',
+        padding: 10,
+    },
+    itemText: {
+
     },
     itemImage: {
-        width: 60,
-        height: 60,
+
     },
-    itemContent: {
-        flex: 1,
-        height: 80, 
-        marginHorizontal: 10,
-        justifyContent: 'space-evenly',
+    itemVideo: {
+
     },
-    itemTitle: {
-        fontSize: 16,
-        color: '#000',
-    },
-    itemSubTitle: {
-        color: '#aaa',
-        fontSize: 12,
-    },
-    itemDesc: {
-        color: '#aaa',
-        fontSize: 12,
-    }
 })
 
 const mapStateToProps = state => ({
