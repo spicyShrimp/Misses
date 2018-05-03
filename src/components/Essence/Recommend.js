@@ -14,7 +14,7 @@ import { width, height } from '../../configs/Device';
 import { loadRecommendList } from '../../actions/Essence/Recommend'
 
 class Recommend extends Component {
-    componentDidMount() {
+    componentWillMount() {
         const {data, loadRecommendList } = this.props;
         loadRecommendList(data, false, 0);
     }

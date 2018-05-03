@@ -30,7 +30,7 @@ class Friend extends Component {
         headerTitle: <SearchHeader />,
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const {data, fetchSubScribeData} = this.props;
         fetchSubScribeData(data);
     }
