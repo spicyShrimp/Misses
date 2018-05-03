@@ -18,12 +18,12 @@ export default class Detail extends Component {
 
 render() {
     return (
-		<SafeAreaView style= {styles.container}>
+		<SafeAreaView style={styles.container}>
 			<Text>详情</Text>
 			<TouchableOpacity 
-				style = { styles.button }
-				activeOpacity = { 0.6 }
-				onPress = { () => this.props.navigation.goBack() }
+				style={styles.button}
+				activeOpacity={0.7}
+				onPress={() => this.props.navigation.goBack()}
 			>
 				<Text>返回</Text>
 			</TouchableOpacity>
