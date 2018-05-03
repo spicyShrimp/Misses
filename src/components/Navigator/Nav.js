@@ -7,17 +7,18 @@ import {
     Easing, 
     Animated
 } from 'react-native';
+import { connect } from 'react-redux';
+import { StackNavigator } from 'react-navigation';
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
+import { ios, statusBarHeight } from '../../configs/Device';
+import NavItem from './NavItem';
 import Tab from './Tab';
 import Detail from '../Detail';
 import Publish from '../Publish';
-import { connect } from 'react-redux';
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
-import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
-import { ios, statusBarHeight } from '../../configs/Device';
-import NavBack from './NavBack';
+import Web from '../Base/Web';
 
-const StackOptions = ({navigation}) => {
-    const navigationOptions = {
+const navigationOptions = ({navigation}) => {
+    const options = {
         headerStyle: { 
             borderBottomWidth: 0,
             elevation: 0,
@@ -29,14 +30,18 @@ const StackOptions = ({navigation}) => {
         headerTintColor: '#fff',
         headerBackTitle: null,
         gesturesEnabled: false,
+        headerTitle: '百思不得姐',
     };
 
     if (navigation.state.routeName === 'Tab') {
-        return navigationOptions;
+        return options;
     } else {
         return {
-            ...navigationOptions, 
-            headerLeft: <NavBack />, 
+            ...options, 
+            headerLeft: <NavItem 
+                            source={{uri: 'nav_back'}} 
+                            onPress={() => navigation.goBack()}
+                        />, 
             headerRight: <View />
         };
     }
@@ -44,18 +49,15 @@ const StackOptions = ({navigation}) => {
 
 const Main = StackNavigator(
     {
-        Tab: { 
-            screen: Tab,
-         },
-        Detail: { 
-            screen: Detail,
-        },
+        Tab,
+        Detail,
+        Web,
     },
     {
         initialRouteName: 'Tab',
         mode: 'card',
         headerMode: 'screen',
-        navigationOptions: (props) => StackOptions(props),
+        navigationOptions,
         transitionConfig: () => ({ 
             // transitionSpec: {
             //     duration: 250,

@@ -16,11 +16,7 @@ import Me from '../Me';
 const tabBarOptions = {
     activeTintColor: '#ff2e57',
     inactiveTintColor: '#666',
-    upperCaseLabel: false,
-    showIcon: true,
 }
-
-const PlaceHolder = {}
 
 export default TabNavigator(
     {
