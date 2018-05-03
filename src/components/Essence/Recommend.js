@@ -10,7 +10,7 @@ import {
     Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { width } from '../../configs/Device';
+import { width, height } from '../../configs/Device';
 import { loadRecommendList } from '../../actions/Essence/Recommend'
 
 class Recommend extends Component {
@@ -48,28 +48,36 @@ class Recommend extends Component {
     }
 
     _renderItemContent(item) {
-        let image, imageHeight;
-        const imageWidth = width - 20;
+        let image, imageWidth, imageHeight, refWidth, refHeight;
         if (item.type === 'gif') {
             image = item.gif.images[0];
-            imageHeight = imageWidth / item.gif.width * item.gif.height;
+            refWidth = item.gif.width;
+            refHeight = item.gif.height;
         }
         if (item.type === 'image') {
             image = item.image.big[0];
-            imageHeight = imageWidth / item.image.width * item.image.height;
+            refWidth = item.image.width;
+            refHeight = item.image.height;
         }
         if (item.type === 'video') {
             image = item.video.thumbnail[0];
-            imageHeight = imageWidth / item.video.width * item.video.height;
+            refWidth = item.video.width;
+            refHeight = item.video.height;
         }
 
         if (image != undefined || image != null) {
+            imageWidth = width - 20;
+            imageHeight = imageWidth / refWidth * refHeight;
+            if (imageHeight > height) {
+                imageHeight = height;
+                imageWidth = imageHeight / refHeight * refWidth;
+            }
             return (
                 <View>
                     <Text style={styles.itemText}>{item.text}</Text>
                     <Image
                         source={{uri: image}}
-                        style={{width: imageWidth, height: imageHeight}}
+                        style={{width: imageWidth, height: imageHeight, alignSelf: 'center'}}
                     />
                 </View>
             )
