@@ -78,6 +78,7 @@ class Recommend extends Component {
                     <Text style={styles.itemText}>{item.text}</Text>
                     <Image
                         source={{uri: image}}
+                        resizeMode='contain'
                         defaultSource={{uri: 'placeholder'}}
                         style={{width: imageWidth, height: imageHeight, alignSelf: 'center'}}
                         />
