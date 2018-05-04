@@ -11,7 +11,7 @@ export default class PlacehoderImage extends Component {
     }
     render() {
         const {source, style, placeholder, resizeMode } = this.props;
-        if (!placeholder) {
+        if (placeholder) {
             return (
                 <ImageBackground
                     source={this.state.mDidLoad ? {uri:'clear_placeholder'} : placeholder}
