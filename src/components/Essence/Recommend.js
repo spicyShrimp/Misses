@@ -10,9 +10,58 @@ import {
     Image,
     ImageBackground,
 } from 'react-native';
+import FastImage from 'react-native-fast-image'
 import { connect } from 'react-redux';
 import { width, height } from '../../configs/Device';
 import { loadRecommendList } from '../../actions/Essence/Recommend'
+
+class PlayImage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            didLoad: false,
+        }
+    }
+
+    render () {
+        const { 
+            source, 
+            resizeMode,
+            style,
+            playSource,
+            playStyle,
+            hidePlay,
+        } = this.props;
+
+        return (
+            <View>
+                <FastImage
+                    source={{uri: this.state.didLoad ? 'clear_placeholder' : 'placeholder'}}
+                    resizeMode={resizeMode}
+                    style={style}
+                    >
+                    <FastImage
+                        source={source}
+                        resizeMode={resizeMode}
+                        style={style}
+                        onLoad={() => this._onLoad()}
+                        />
+                    <Image 
+                        source={playSource}
+                        style={hidePlay ? (this.state.didLoad ? {opacity: 0} : playStyle) : playStyle}
+                        />
+                </FastImage>
+            </View>
+        )
+    }
+
+    _onLoad() {
+        this.setState({
+            didLoad: true,
+        })
+    }
+}
+
 
 class Recommend extends Component {
     componentWillMount() {
@@ -52,35 +101,51 @@ class Recommend extends Component {
         let image, imageWidth, imageHeight, refWidth, refHeight;
         if (item.type === 'gif') {
             image = item.gif.images[0];
-            refWidth = item.gif.width;
-            refHeight = item.gif.height;
-        }
-        if (item.type === 'image') {
-            image = item.image.big[0];
-            refWidth = item.image.width;
-            refHeight = item.image.height;
-        }
-        if (item.type === 'video') {
-            image = item.video.thumbnail[0];
-            refWidth = item.video.width;
-            refHeight = item.video.height;
-        }
-
-        if (image != undefined || image != null) {
             imageWidth = width - 20;
-            imageHeight = imageWidth / refWidth * refHeight;
-            if (imageHeight > height) {
-                imageHeight = height;
-                imageWidth = imageHeight / refHeight * refWidth;
-            }
+            imageHeight = imageWidth / item.gif.width * item.gif.height;
             return (
                 <View>
-                    <Text style={styles.itemText}>{item.text}</Text>
-                    <Image
+                    <Text style={styles.itemText}>gif{item.text}</Text>
+                    <PlayImage 
                         source={{uri: image}}
                         resizeMode='contain'
                         defaultSource={{uri: 'placeholder'}}
-                        style={{width: imageWidth, height: imageHeight, alignSelf: 'center'}}
+                        style={{width: imageWidth, height: imageHeight}}
+                        playSource={{uri: 'gif_play'}}
+                        playStyle={styles.itemPlay}
+                        hidePlay
+                        />
+                </View>
+            )
+        } else if (item.type === 'image') {
+            image = item.image.big[0];
+            imageWidth = width - 20;
+            imageHeight =  Math.min(imageWidth, imageWidth / item.image.width * item.image.height);
+            return (
+                <View>
+                    <Text style={styles.itemText}>image{item.text}</Text>
+                    <Image
+                        source={{uri: image}}
+                        defaultSource={{uri: 'placeholder'}}
+                        style={{width: imageWidth, height: imageHeight}}
+                        />
+                </View>
+            )
+        } else if (item.type === 'video') {
+            image = item.video.thumbnail[0];
+            imageWidth = width - 20;
+            imageHeight =  Math.min(imageWidth, imageWidth / item.video.width * item.video.height);
+            return (
+                <View>
+                    <Text style={styles.itemText}>video{item.text}</Text>
+                    <PlayImage 
+                        source={{uri: image}}
+                        resizeMode='contain'
+                        defaultSource={{uri: 'placeholder'}}
+                        style={{width: imageWidth, height: imageHeight}}
+                        playSource={{uri: 'video_play'}}
+                        playStyle={styles.itemPlay}
+                        hidePlay={false}
                         />
                 </View>
             )
@@ -144,6 +209,15 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 12,
     },
+    itemPlay: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginLeft: -35,
+        marginTop: -35,
+        width: 70, 
+        height: 70,
+    }
 })
 
 const mapStateToProps = state => ({
