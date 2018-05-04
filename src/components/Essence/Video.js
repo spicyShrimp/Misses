@@ -1,138 +1,72 @@
 import React, { Component } from 'react';
-import {  
-    SafeAreaView,
-    View, 
-    Text, 
-    TouchableOpacity, 
-    StyleSheet, 
-    TextInput,
-    FlatList,
-    Image,
-} from 'react-native';
+import { Image, Text, View, Dimensions, StyleSheet, TouchableOpacity } from "react-native";
+import MasonryList from '@appandflow/masonry-list';
+import PlacehoderImage from '../Base/PlacehoderImage';
 import { connect } from 'react-redux';
-import { fetchSubScribeData } from '../../actions/Friend'
+import { loadVideoList } from '../../actions/Essence/Video';
+import { width, height } from '../../configs/Device';
 
+const itemWidth = (width - 16) / 2;
 
-class Video extends Component {
+class Video extends React.Component {
+
     componentDidMount() {
-        const {data, fetchSubScribeData} = this.props;
-        fetchSubScribeData(data);
+        const {data, loadVideoList } = this.props;
+        loadVideoList(data, false, 0);
     }
 
     render() {
-        const {data, refreshing, fetchSubScribeData} = this.props;
+        const { refreshing, np, data, loadVideoList } = this.props;
         return (
-            <SafeAreaView style={styles.container}>
-                <FlatList
-                    data={data}
-                    renderItem={(props) => this._renderItem(props)}
-                    ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
-                    refreshing={refreshing}
-                    onRefresh={()=>fetchSubScribeData(data)}
-                    keyExtractor={(item, index) => this._keyExtractor(item, index)}
-                    />
-            </SafeAreaView>
-        );
-    }
-
-    _ItemSeparatorComponent() {
-        return (
-            <View style={{height: 0.5, marginLeft: 15, backgroundColor: 'rgba(100,100, 100, 0.2)'}} />
+            <MasonryList
+                data={data}
+                numColumns={2}
+                renderItem={(item) => this._renderItem(item)}
+                getHeightForItem={(item) => this._getHeightForItem(item)}
+                refreshing = {refreshing}
+                onRefresh = {() => loadVideoList(data, false, 0)}
+                onEndReachedThreshold={0.5}
+                onEndReached={() => loadVideoList(data, true, np)}
+            />
         )
     }
 
-    _keyExtractor(item, index) {
-        return item.theme_name + index;
+    _getHeightForItem({item}) {
+        return Math.max(itemWidth, itemWidth / item.video.width * item.video.height);
     }
 
     _renderItem({item}) {
-		return (
-			<TouchableOpacity 
-				activeOpacity={0.7}
-                style={styles.item}
-                onPress={() => this.goToDetail(item)}
-			>
-				<Image 
-					source={{uri: item.image_list}}  
-					style={{width: 60, height: 60}}
-				/>
-                
-                <View style={styles.itemContent}>
-                    <Text style={styles.itemTitle}>{item.theme_name}</Text>
-                    <Text style={styles.itemSubTitle}>今日更新 {item.today_topic_num} | 当前在线 {item.visit}</Text>
-                    <Text 
-                        style={item.info ? styles.itemDesc: {height: 0}}
-                        numberOfLines={1}
-                    >
-                        {item.info.replace('\u3000', '').split('\r\n')[0]}
-                    </Text>
-                </View>
-
-				<Image 
-					source={{uri: 'arrow_right'}}
-					style={{width: 7, height: 12}}
-				/>
-			</TouchableOpacity>
-		)
+        const itemHeight = this._getHeightForItem({item});
+        return (
+            <TouchableOpacity style={styles.item}>
+                <PlacehoderImage 
+                    source={{uri: item.video.thumbnail[0]}}
+                    placeholder={{uri: 'placeholder'}}
+                    style={{width: itemWidth, height: itemHeight, borderRadius: 4,}}
+                    />
+            </TouchableOpacity>
+        )
     }
 
-    goToDetail(item) {
-        this.props.navigation.navigate('Detail', {title: item.theme_name});
-    }
-};
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 1, 
     },
-    input: {
-        flex: 1, 
-        height: 30,
-        padding: 0,
-        paddingLeft: 10,
-        marginHorizontal: 10, 
-        borderRadius: 5,
-        backgroundColor: '#fff',
-    },
     item: {
-        height: 80,
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        paddingHorizontal: 15,
+        margin: 4,
     },
-    itemImage: {
-        width: 60,
-        height: 60,
-    },
-    itemContent: {
-        flex: 1,
-        height: 80, 
-        marginHorizontal: 10,
-        justifyContent: 'space-evenly',
-    },
-    itemTitle: {
-        fontSize: 16,
-        color: '#000',
-    },
-    itemSubTitle: {
-        color: '#aaa',
-        fontSize: 12,
-    },
-    itemDesc: {
-        color: '#aaa',
-        fontSize: 12,
-    }
 })
 
 const mapStateToProps = state => ({
-    refreshing: state.Friend.refreshing,
-    data: state.Friend.data,
+    refreshing: state.Video.refreshing,
+    np: state.Video.np,
+    data: state.Video.data,
 });
 
 const mapDispatchToProps = {
-    fetchSubScribeData,
+    loadVideoList,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Video);
-  

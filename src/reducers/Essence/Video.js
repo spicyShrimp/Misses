@@ -1,17 +1,19 @@
-import { FetchType } from '../../configs/actionTypes';
+import { EssenceType } from '../../configs/actionTypes';
 
 const initState = {
+    refreshing: false,
     data: [],
-    refreshing: false
+    np: 0,
 }
 
 export default (state = initState, action) => {
     switch (action.type) {
-        case FetchType.FETCH_SUBSCRIBE_LIST:
+        case EssenceType.LOAD_VIDEO_LIST:
             return {
                 ...state,
-                data: action.data,
                 refreshing: action.refreshing,
+                data: action.data,
+                np: action.np,
             }
         default:
             return state;

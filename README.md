@@ -38,3 +38,8 @@ react native
 * 首页基本布局
 * 首页推荐接口调用
 ![](./exhibition/6.png)
+
+5.4
+* 视频页瀑布流布局
+* 视频页接口调用
+![](./exhibition/7.png)

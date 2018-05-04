@@ -11,7 +11,7 @@ import {
 import PlacehoderImage from '../Base/PlacehoderImage';
 import { connect } from 'react-redux';
 import { width, height } from '../../configs/Device';
-import { loadRecommendList } from '../../actions/Essence/Recommend'
+import { loadRecommendList } from '../../actions/Essence/Recommend';
 
 class PlayImage extends Component {
     constructor() {

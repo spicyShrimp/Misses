@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import PlacehoderImage from '../Base/PlacehoderImage';
 import { connect } from 'react-redux';
-import { fetchSubScribeData } from '../../actions/Friend'
+import { fetchSubScribeList } from '../../actions/Friend'
 
 class SearchHeader extends Component {
     render () {
@@ -31,12 +31,12 @@ class Friend extends Component {
     }
 
     componentWillMount() {
-        const {data, fetchSubScribeData} = this.props;
-        fetchSubScribeData(data);
+        const {data, fetchSubScribeList} = this.props;
+        fetchSubScribeList(data);
     }
 
     render() {
-        const {data, refreshing, fetchSubScribeData} = this.props;
+        const {data, refreshing, fetchSubScribeList} = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
@@ -44,7 +44,7 @@ class Friend extends Component {
                     renderItem={(item) => this._renderItem(item)}
                     ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
                     refreshing={refreshing}
-                    onRefresh={() => fetchSubScribeData(data)}
+                    onRefresh={() => fetchSubScribeList(data)}
                     keyExtractor={(item, index) => this._keyExtractor(item, index)}
                 />
             </SafeAreaView>
@@ -148,7 +148,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    fetchSubScribeData,
+    fetchSubScribeList,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Friend);
