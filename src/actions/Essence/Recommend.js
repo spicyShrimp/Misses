@@ -11,7 +11,6 @@ import { EssenceType } from '../../configs/actionTypes';
  */
 export function loadRecommendList(data, loadmore, np = 0) {
     return dispatch => {
-        console.log(data, loadmore, np);
         dispatch({
             type: EssenceType.LOAD_RECOMMEND_LIST,
             refreshing: !loadmore,

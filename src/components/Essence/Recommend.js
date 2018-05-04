@@ -8,9 +8,8 @@ import {
     TextInput,
     FlatList,
     Image,
-    ImageBackground,
 } from 'react-native';
-import FastImage from 'react-native-fast-image'
+import PlacehoderImage from '../Base/PlacehoderImage';
 import { connect } from 'react-redux';
 import { width, height } from '../../configs/Device';
 import { loadRecommendList } from '../../actions/Essence/Recommend'
@@ -28,6 +27,7 @@ class PlayImage extends Component {
             source, 
             resizeMode,
             style,
+            placeholder,
             playSource,
             playStyle,
             hidePlay,
@@ -35,22 +35,17 @@ class PlayImage extends Component {
 
         return (
             <View>
-                <FastImage
-                    source={{uri: this.state.didLoad ? 'clear_placeholder' : 'placeholder'}}
+                <PlacehoderImage
+                    source={source}
+                    placeholder={placeholder}
                     resizeMode={resizeMode}
                     style={style}
-                    >
-                    <FastImage
-                        source={source}
-                        resizeMode={resizeMode}
-                        style={style}
-                        onLoad={() => this._onLoad()}
-                        />
-                    <Image 
-                        source={playSource}
-                        style={hidePlay ? (this.state.didLoad ? {opacity: 0} : playStyle) : playStyle}
-                        />
-                </FastImage>
+                    onLoad={() => this._onLoad()}
+                    />
+                <Image 
+                    source={playSource}
+                    style={hidePlay ? (this.state.didLoad ? {opacity: 0} : playStyle) : playStyle}
+                    />
             </View>
         )
     }
@@ -79,7 +74,7 @@ class Recommend extends Component {
                     ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
                     refreshing={refreshing}
                     onRefresh={() => loadRecommendList(data, false, 0)}
-                    onEndReachedThreshold={0}
+                    onEndReachedThreshold={0.5}
                     onEndReached={() => loadRecommendList(data, true, np)}
                     keyExtractor={(item, index) => this._keyExtractor(item, index)}
                     />
@@ -99,35 +94,35 @@ class Recommend extends Component {
 
     _renderItemContent(item) {
         let image, imageWidth, imageHeight, refWidth, refHeight;
-        if (item.type === 'gif') {
+        if (item.type === 'image') {
+            imageWidth = width - 20;
+            image = item.image.height > imageWidth ? item.image.thumbnail_small[0] : item.image.big[0];
+            imageHeight =  Math.min(imageWidth , imageWidth / item.image.width * item.image.height);
+            return (
+                <View>
+                    <Text style={styles.itemText}>{item.text}</Text>
+                    <PlacehoderImage
+                        source={{uri: image}}
+                        placeholder={{uri: 'placeholder'}}
+                        style={{width: imageWidth, height: imageHeight}}
+                        />
+                </View>
+            )
+        } else if (item.type === 'gif') {
             image = item.gif.images[0];
             imageWidth = width - 20;
             imageHeight = imageWidth / item.gif.width * item.gif.height;
             return (
                 <View>
-                    <Text style={styles.itemText}>gif{item.text}</Text>
+                    <Text style={styles.itemText}>{item.text}</Text>
                     <PlayImage 
                         source={{uri: image}}
                         resizeMode='contain'
-                        defaultSource={{uri: 'placeholder'}}
+                        placeholder={{uri: 'placeholder'}}
                         style={{width: imageWidth, height: imageHeight}}
                         playSource={{uri: 'gif_play'}}
                         playStyle={styles.itemPlay}
                         hidePlay
-                        />
-                </View>
-            )
-        } else if (item.type === 'image') {
-            image = item.image.big[0];
-            imageWidth = width - 20;
-            imageHeight =  Math.min(imageWidth, imageWidth / item.image.width * item.image.height);
-            return (
-                <View>
-                    <Text style={styles.itemText}>image{item.text}</Text>
-                    <Image
-                        source={{uri: image}}
-                        defaultSource={{uri: 'placeholder'}}
-                        style={{width: imageWidth, height: imageHeight}}
                         />
                 </View>
             )
@@ -137,11 +132,11 @@ class Recommend extends Component {
             imageHeight =  Math.min(imageWidth, imageWidth / item.video.width * item.video.height);
             return (
                 <View>
-                    <Text style={styles.itemText}>video{item.text}</Text>
+                    <Text style={styles.itemText}>{item.text}</Text>
                     <PlayImage 
                         source={{uri: image}}
                         resizeMode='contain'
-                        defaultSource={{uri: 'placeholder'}}
+                        placeholder={{uri: 'placeholder'}}
                         style={{width: imageWidth, height: imageHeight}}
                         playSource={{uri: 'video_play'}}
                         playStyle={styles.itemPlay}

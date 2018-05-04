@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -259,6 +260,13 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
+		5672BA14209C7B9500A24E53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03DBE00FE2954E00B1FD0A86 /* FastImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A287971D1DE0C0A60081BDFA;
+			remoteInfo = FastImage;
+		};
 		5E9157321DD0AC6500FF2AA8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
@@ -306,6 +314,7 @@
 		00E356EE1AD99517003FC87E /* MissesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MissesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MissesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MissesTests.m; sourceTree = "<group>"; };
+		03DBE00FE2954E00B1FD0A86 /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Misses.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Misses.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,12 +326,11 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Misses/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		32E477BC5A074CCB9E2D251B /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		03DBE00FE2954E00B1FD0A86 /* FastImage.xcodeproj */ = {isa = PBXFileReference; name = "FastImage.xcodeproj"; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		32E477BC5A074CCB9E2D251B /* libFastImage.a */ = {isa = PBXFileReference; name = "libFastImage.a"; path = "libFastImage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,6 +490,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5672BA0F209C7B9100A24E53 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				32E477BC5A074CCB9E2D251B /* libFastImage.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		5672BA11209C7B9500A24E53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5672BA15209C7B9500A24E53 /* libFastImage.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,6 +561,7 @@
 				00E356EF1AD99517003FC87E /* MissesTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				5672BA0F209C7B9100A24E53 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -627,6 +652,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 5672BA11209C7B9500A24E53 /* Products */;
+					ProjectRef = 03DBE00FE2954E00B1FD0A86 /* FastImage.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -909,6 +938,13 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		5672BA15209C7B9500A24E53 /* libFastImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFastImage.a;
+			remoteRef = 5672BA14209C7B9500A24E53 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1031,23 +1067,23 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
+				);
 				INFOPLIST_FILE = MissesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Misses.app/Misses";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
-				);
 			};
 			name = Debug;
 		};
@@ -1056,23 +1092,23 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
+				);
 				INFOPLIST_FILE = MissesTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Misses.app/Misses";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
-				);
 			};
 			name = Release;
 		};
@@ -1082,6 +1118,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
+				);
 				INFOPLIST_FILE = Misses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1091,10 +1131,6 @@
 				);
 				PRODUCT_NAME = Misses;
 				VERSIONING_SYSTEM = "apple-generic";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
-				);
 			};
 			name = Debug;
 		};
@@ -1103,6 +1139,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
+				);
 				INFOPLIST_FILE = Misses/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1112,10 +1152,6 @@
 				);
 				PRODUCT_NAME = Misses;
 				VERSIONING_SYSTEM = "apple-generic";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
-				);
 			};
 			name = Release;
 		};
