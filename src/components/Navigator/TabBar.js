@@ -25,7 +25,7 @@ export default class TabBar extends Component {
     				activeOpacity={0.7}
                     style={styles.tabItem} 
                     onPress={() => navigation.navigate('Publish')}
-                >
+                    >
                     <View  style={styles.tabItem}>
                         {this.props.renderIcon(TabScene)}
                     </View>

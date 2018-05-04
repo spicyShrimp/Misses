@@ -19,7 +19,7 @@ export default class New extends Component {
 				<TouchableOpacity 
 					style={styles.button} 
 					onPress={() => navigation.navigate('Detail')}
-				>
+					>
 					<Text>Go Detail</Text>
 				</TouchableOpacity>
 			</SafeAreaView>

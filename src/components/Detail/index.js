@@ -24,7 +24,7 @@ render() {
 				style={styles.button}
 				activeOpacity={0.7}
 				onPress={() => this.props.navigation.goBack()}
-			>
+				>
 				<Text>返回</Text>
 			</TouchableOpacity>
 		</SafeAreaView>

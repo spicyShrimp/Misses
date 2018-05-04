@@ -41,7 +41,7 @@ const navigationOptions = ({navigation}) => {
             headerLeft: <NavItem 
                             source={{uri: 'nav_back'}} 
                             onPress={() => navigation.goBack()}
-                        />, 
+                            />, 
             headerRight: <View />
         };
     }

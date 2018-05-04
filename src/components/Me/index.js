@@ -43,7 +43,7 @@ export default class Me extends Component {
 					numColumns={numColumns}
 					ListHeaderComponent={()=>this._renderHeader()}
 					ListFooterComponent={()=>this._renderFooter()}
-				/>
+					/>
 			</SafeAreaView>
 		)
 	}

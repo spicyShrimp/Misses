@@ -14,25 +14,24 @@ import Video from './Video';
 export default class Essence extends Component {
 	static navigationOptions = ({navigation}) => ({
 		headerLeft: <NavItem 
-					source={{uri: 'nav_game'}} 
-					onPress={() => navigation.navigate('Detail')} 
-				/>,
+						source={{uri: 'nav_game'}} 
+						onPress={() => navigation.navigate('Detail')} 
+						/>,
 		headerRight: <NavItem 
-					source={{uri: 'nav_random'}} 
-					onPress={() => navigation.navigate('Detail')} 
-				/>,
+						source={{uri: 'nav_random'}} 
+						onPress={() => navigation.navigate('Detail')} 
+						/>,
 	})
 	render() {
 		const {navigation} = this.props;
 		return (
-			<ScrollableTabView 
-					renderTabBar={() => this._renderTabBar()}>
-					<Recommend tabLabel="推荐" navigation={navigation} />
-					<Video tabLabel="视频" navigation={navigation} />
-					<Video tabLabel="图片" navigation={navigation} />
-					<Video tabLabel="笑话" navigation={navigation} />
-					<Video tabLabel="排行" navigation={navigation} />
-				</ScrollableTabView>	
+			<ScrollableTabView renderTabBar={() => this._renderTabBar()}>
+				<Recommend tabLabel="推荐" navigation={navigation} />
+				<Video tabLabel="视频" navigation={navigation} />
+				<Video tabLabel="图片" navigation={navigation} />
+				<Video tabLabel="笑话" navigation={navigation} />
+				<Video tabLabel="排行" navigation={navigation} />
+			</ScrollableTabView>	
 		)
 	}
 
@@ -44,7 +43,7 @@ export default class Essence extends Component {
 					textStyle={styles.tabBarText}
 					underlineStyle={styles.tabBarUnderline}
 					style={{height: 35}}
-				/>
+					/>
 	}
 }
   

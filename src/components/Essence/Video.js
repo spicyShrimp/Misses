@@ -30,7 +30,7 @@ class Video extends Component {
                     refreshing={refreshing}
                     onRefresh={()=>fetchSubScribeData(data)}
                     keyExtractor={(item, index) => this._keyExtractor(item, index)}
-                />
+                    />
             </SafeAreaView>
         );
     }

@@ -10,12 +10,12 @@ export default class NavItem extends Component {
             <TouchableOpacity 
                 style={style ? style : styles.item}
                 onPress={onPress ? () => onPress() : null}
-            >
+                >
                 <Image 
                     resizeMode='contain'
                     source={source ? source : {uri: 'nav_back'}} 
                     style={styles.image} 
-                />
+                    />
             </TouchableOpacity>
         )
     }

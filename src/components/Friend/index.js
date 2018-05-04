@@ -20,7 +20,7 @@ class SearchHeader extends Component {
                 clearButtonMode='while-editing'
                 underlineColorAndroid='transparent'
                 style={styles.input}
-            />
+                />
         )
     }
 }

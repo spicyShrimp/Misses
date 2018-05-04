@@ -52,13 +52,13 @@ class App extends Component {
                     translucent
                     backgroundColor='transparent'
                     barStyle='light-content'
-                />
+                    />
                 <Nav navigation={addNavigationHelpers({
                     state: Navigator,
                     dispatch,
                     addListener,
                     })}
-                />
+                    />
             </View>
             
         );

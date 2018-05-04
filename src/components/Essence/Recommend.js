@@ -8,6 +8,7 @@ import {
     TextInput,
     FlatList,
     Image,
+    ImageBackground,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { width, height } from '../../configs/Device';
@@ -32,7 +33,7 @@ class Recommend extends Component {
                     onEndReachedThreshold={0}
                     onEndReached={() => loadRecommendList(data, true, np)}
                     keyExtractor={(item, index) => this._keyExtractor(item, index)}
-                />
+                    />
             </SafeAreaView>
         );
     }
@@ -77,8 +78,9 @@ class Recommend extends Component {
                     <Text style={styles.itemText}>{item.text}</Text>
                     <Image
                         source={{uri: image}}
+                        defaultSource={{uri: 'placeholder'}}
                         style={{width: imageWidth, height: imageHeight, alignSelf: 'center'}}
-                    />
+                        />
                 </View>
             )
         } else {
@@ -97,12 +99,12 @@ class Recommend extends Component {
                 <TouchableOpacity 
                     activeOpacity={0.7}
                     onPress={() => this._goToUser(item.u)}
-                >
+                    >
                     <View style={{height: 50, marginBottom: 10, flexDirection: 'row', alignItems: 'center'}}>
                         <Image 
                             source={{uri:item.u.header[0]}}
                             style={{width: 30, height: 30, borderRadius: 15}}
-                        />
+                            />
                         <View style={{marginLeft: 10, justifyContent: 'space-evenly', height: 50}}>
                             <Text style={{fontSize: 12, color: '#000'}}>{item.u.name}</Text>
                             <Text style={{fontSize: 10, color: '#333'}}>{item.passtime}</Text>
@@ -112,7 +114,7 @@ class Recommend extends Component {
                 <TouchableOpacity 
                     activeOpacity={0.7}
                     onPress={() => this._goToDetail(item)}
-                >
+                    >
                     {this._renderItemContent(item)}
                 </TouchableOpacity>
             </View>

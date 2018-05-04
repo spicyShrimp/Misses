@@ -31,13 +31,13 @@ export default class Publish extends Component {
 							renderItem={(item) => this._renderItem(item)}
 							numColumns={3}
 							scrollEnabled={false}
-						/>
+							/>
 					</View>
 					<TouchableOpacity 
 						activeOpacity={0.7}
 						style={styles.button}
 						onPress={() => this.props.navigation.goBack()}
-					>
+						>
 						<Text>取消</Text>
 					</TouchableOpacity>
 			</SafeAreaView>
@@ -50,11 +50,11 @@ export default class Publish extends Component {
 				activeOpacity={0.7}
 				style={styles.item} 
 				onPress={() => this._goDetail(data.item)}
-			>
+				>
 				<Image 
 					source={{uri: data.item.key}}
 					style={{width: 57, height: 57}}
-				/>
+					/>
 				<Text>{data.item.title}</Text>
 			</TouchableOpacity>
 		)
