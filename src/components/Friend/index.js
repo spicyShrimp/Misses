@@ -7,8 +7,8 @@ import {
     StyleSheet, 
     TextInput,
     FlatList,
-    Image,
 } from 'react-native';
+import PlacehoderImage from '../Base/PlacehoderImage';
 import { connect } from 'react-redux';
 import { fetchSubScribeData } from '../../actions/Friend'
 
@@ -68,8 +68,9 @@ class Friend extends Component {
                 style={styles.item}
                 onPress={() => this.goToDetail(item)}
 			>
-				<Image 
-					source={{uri: item.image_list}}  
+				<PlacehoderImage 
+                    source={{uri: item.image_list}}  
+                    placeholder={{uri: 'placeholder'}}
 					style={{width: 60, height: 60}}
 				/>
                 
@@ -84,7 +85,7 @@ class Friend extends Component {
                     </Text>
                 </View>
 
-				<Image 
+				<PlacehoderImage 
 					source={{uri: 'arrow_right'}}
 					style={{width: 7, height: 12}}
 				/>

@@ -11,7 +11,9 @@ export default (state = initState, action) => {
         case EssenceType.LOAD_RECOMMEND_LIST:
             return {
                 ...state,
-                ...action,
+                refreshing: action.refreshing,
+                data: action.data,
+                np: action.np,
             }
         default:
             return state;
