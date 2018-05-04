@@ -7,7 +7,6 @@ import {
     StyleSheet, 
     TextInput,
     FlatList,
-    Image,
 } from 'react-native';
 import PlacehoderImage from '../Base/PlacehoderImage';
 import { connect } from 'react-redux';
@@ -42,7 +41,7 @@ class PlayImage extends Component {
                     style={style}
                     onLoad={() => this._onLoad()}
                     />
-                <Image 
+                <PlacehoderImage 
                     source={playSource}
                     style={hidePlay ? (this.state.didLoad ? {opacity: 0} : playStyle) : playStyle}
                     />
@@ -162,7 +161,7 @@ class Recommend extends Component {
                     onPress={() => this._goToUser(item.u)}
                     >
                     <View style={{height: 50, marginBottom: 10, flexDirection: 'row', alignItems: 'center'}}>
-                        <Image 
+                        <PlacehoderImage 
                             source={{uri:item.u.header[0]}}
                             style={{width: 30, height: 30, borderRadius: 15}}
                             />
