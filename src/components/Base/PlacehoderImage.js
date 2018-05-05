@@ -34,7 +34,7 @@ export default class PlacehoderImage extends Component {
             )
         } else {
             return (
-                <Image 
+                <FastImage 
                     source={source}
                     resizeMode={resizeMode || FastImage.resizeMode.cover}
                     style={style}
