@@ -10,13 +10,13 @@ export default class PlacehoderImage extends Component {
         }
     }
     render() {
-        const { placeholder, style, width, height } = this.props;
+        const { placeholder, style } = this.props;
         if (placeholder) {
             return (
                 <ImageBackground
-                    source={this.state.mDidLoad ? {uri:'clear_placeholder'} : placeholder}
+                    source={this.state.mDidLoad ? {visibility: 'hidden'} : placeholder}
                     resizeMode={FastImage.resizeMode.center}
-                    style={{width: width || style.width, height: height || style.height}}
+                    style={{width: style.width, height: style.height}}
                     >
                     {this._renderImage()}      
                 </ImageBackground>
@@ -27,15 +27,13 @@ export default class PlacehoderImage extends Component {
     }
 
     _renderImage = () => {
-        const {source, style, width, height, resizeMode } = this.props;
+        const {source, style, resizeMode } = this.props;
         const ImageType = source.uri.indexOf('http') < 0 ? Image : FastImage;
         return (
             <ImageType 
                 source={source}
                 resizeMode={resizeMode || FastImage.resizeMode.cover}
                 style={style}
-                width={width}
-                height={height}
 
                 onLoadStart={this._onLoadStart}
                 onProgress={this._onProgress}

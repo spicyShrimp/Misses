@@ -41,7 +41,7 @@ class PlayImage extends Component {
                     />
                 <PlacehoderImage 
                     source={playSource}
-                    style={hidePlay ? (this.state.didLoad ? {opciaty: 0} : playStyle) : playStyle}
+                    style={hidePlay ? (this.state.didLoad ? {visibility: 'hidden'} : playStyle) : playStyle}
                     />
             </View>
         )
