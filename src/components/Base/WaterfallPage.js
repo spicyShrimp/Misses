@@ -32,6 +32,7 @@ export default class WaterfallPage extends React.Component {
                     onRefresh = {this.onRefreshing}
                     onEndReachedThreshold={0.5}
                     onEndReached={this._onEndReached}
+                    keyExtractor={this._keyExtractor}
                 />
             </SafeAreaView>
         )
@@ -64,6 +65,10 @@ export default class WaterfallPage extends React.Component {
                 np: jsonData.info.np,
             })
         });
+    }
+
+    _keyExtractor = (item, index) => {
+        return item.text + index;
     }
 
     _getHeightForItem = ({item}) => {
