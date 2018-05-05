@@ -21,34 +21,33 @@ export default class Me extends Component {
 		headerRight: <NavItem source={{uri: 'nav_setting'}} />,
 	}
 
-	data = [{
-		content: [
-			{key: 'mine_icon_hot', title: '排行榜'},
-			{key: 'mine_icon_preview', title: '审帖'},
-			{key: 'mine_icon_manhua', title: '漫画'},
-			{key: 'mine_icon_activity', title: '我的收藏'},
-			{key: 'mine_icon_nearby', title: '附近'},
-			{key: 'mine_icon_random', title: '随机穿越'},
-			{key: 'mine_icon_feedback', title: '意见反馈'},
-			{key: 'mine_icon_more', title: '更多'},
-		]
-	}]
-
 	render() {
+		const data = [{
+			content: [
+				{key: 'mine_icon_hot', title: '排行榜'},
+				{key: 'mine_icon_preview', title: '审帖'},
+				{key: 'mine_icon_manhua', title: '漫画'},
+				{key: 'mine_icon_activity', title: '我的收藏'},
+				{key: 'mine_icon_nearby', title: '附近'},
+				{key: 'mine_icon_random', title: '随机穿越'},
+				{key: 'mine_icon_feedback', title: '意见反馈'},
+				{key: 'mine_icon_more', title: '更多'},
+			]
+		}];
 		return (
 			<SafeAreaView style={styles.container}>
 				<SectionList
-					sections={[{data: this.data}]}
-					renderItem={(item)=>this._renderSectionItem(item)}
+					sections={[{data}]}
+					renderItem={this._renderSectionItem}
 					numColumns={numColumns}
-					ListHeaderComponent={()=>this._renderHeader()}
-					ListFooterComponent={()=>this._renderFooter()}
+					ListHeaderComponent={this._ListHeaderComponent}
+					ListFooterComponent={this._ListFooterComponent}
 					/>
 			</SafeAreaView>
 		)
 	}
 
-	_renderHeader() {
+	_ListHeaderComponent = () => {
 		return (
 			<TouchableOpacity 
 				activeOpacity={0.7}
@@ -73,7 +72,7 @@ export default class Me extends Component {
 		)
 	}
 
-	_renderItem({item}) {
+	_renderItem = ({item}) => {
 		return (
 			<TouchableOpacity 
 				activeOpacity={0.7}
@@ -88,19 +87,19 @@ export default class Me extends Component {
 		)
 	}
 
-	_renderSectionItem({section}) {
+	_renderSectionItem = ({section}) => {
 		return (
 			<FlatList
 				data={section.data[0].content}
 				numColumns={numColumns}
-				renderItem={(item)=>this._renderItem(item)}
+				renderItem={this._renderItem}
 				style={{backgroundColor: '#fff'}}
 				scrollEnabled={false}
 			/>
 		)
 	}
 	
-	_renderFooter() {
+	_ListFooterComponent = () => {
 		return (
 			<TouchableOpacity 
 				activeOpacity={0.7}

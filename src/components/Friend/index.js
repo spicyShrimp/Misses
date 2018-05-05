@@ -36,37 +36,37 @@ class Friend extends Component {
     }
 
     render() {
-        const {data, refreshing, fetchSubScribeList} = this.props;
+        const { data, refreshing, fetchSubScribeList } = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
                     data={data}
-                    renderItem={(item) => this._renderItem(item)}
-                    ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
+                    renderItem={this._renderItem}
+                    ItemSeparatorComponent={this._ItemSeparatorComponent}
                     refreshing={refreshing}
                     onRefresh={() => fetchSubScribeList(data)}
-                    keyExtractor={(item, index) => this._keyExtractor(item, index)}
+                    keyExtractor={this._keyExtractor}
                 />
             </SafeAreaView>
         );
     }
 
-    _ItemSeparatorComponent() {
+    _ItemSeparatorComponent = () => {
         return (
             <View style={{height: 0.5, marginLeft: 15, backgroundColor: 'rgba(100,100, 100, 0.2)'}} />
         )
     }
 
-    _keyExtractor(item, index) {
+    _keyExtractor = (item, index) => {
         return item.theme_name + index;
     }
 
-    _renderItem({item}) {
+    _renderItem = ({item}) => {
 		return (
 			<TouchableOpacity 
 				activeOpacity={0.7}
                 style={styles.item}
-                onPress={() => this.goToDetail(item)}
+                onPress={() => this._goToDetail(item)}
 			>
 				<PlacehoderImage 
                     source={{uri: item.image_list}}  
@@ -93,7 +93,7 @@ class Friend extends Component {
 		)
     }
 
-    goToDetail(item) {
+    _goToDetail = (item) => {
         this.props.navigation.navigate('Detail', {title: item.theme_name});
     }
 };

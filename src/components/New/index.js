@@ -1,44 +1,84 @@
 import React, { Component } from 'react';
-import { 
-	SafeAreaView, 
-	View, 
-	Text, 
-	TouchableOpacity, 
-	StyleSheet 
+import {
+  View, 
+  Text, 
+  TouchableOpacity, 
+  StyleSheet 
 } from 'react-native';
-  
-export default class New extends Component {
-	static navigationOptions = {
-		headerTitle: '百思不得姐', 
-	}
-	render() {
-		const { navigation} = this.props;
-		return (
-			<SafeAreaView style={styles.container}>
-				<Text>New</Text>
-				<TouchableOpacity 
-					style={styles.button} 
-					onPress={() => navigation.navigate('Detail')}
-					>
-					<Text>Go Detail</Text>
-				</TouchableOpacity>
-			</SafeAreaView>
-		);
-	}
-};
+import { width } from '../../configs/Device';
+import NavItem from '../Navigator/NavItem';
+import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
+import ListPage from '../Base/ListPage';
+import WaterfallPage from '../Base/WaterfallPage';
+import API from '../../configs/API';
 
+
+export default class Essence extends Component {
+	static navigationOptions = ({navigation}) => ({
+		headerLeft: <NavItem 
+						source={{uri: 'nav_review'}} 
+						onPress={() => navigation.navigate('Detail')} 
+						/>,
+		headerRight: <NavItem 
+						source={{uri: 'nav_search'}} 
+						onPress={() => navigation.navigate('Detail')} 
+						/>,
+	})
+	render() {
+		const {navigation} = this.props;
+		return (
+			<ScrollableTabView renderTabBar={this._renderTabBar}>
+				<ListPage 
+					tabLabel="全部" 
+					navigation={navigation} 
+					api={API.new.all} 
+					/>
+				<WaterfallPage 
+					tabLabel="视频" 
+					navigation={navigation} 
+					api={API.new.video} 
+					/>
+				<ListPage 
+					tabLabel="图片" 
+					navigation={navigation} 
+					api={API.new.picture} 
+					/>
+				<ListPage 
+					tabLabel="笑话" 
+					navigation={navigation} 
+					api={API.new.joke} 
+					/>
+				<ListPage 
+					tabLabel="影视分享" 
+					navigation={navigation} 
+					api={API.new.movie} 
+					/>
+			</ScrollableTabView>	
+		)
+	}
+
+	_renderTabBar = () => {
+		return <DefaultTabBar
+					backgroundColor={'#ff2e57'}
+					activeTextColor={'#fff'}
+					inactiveTextColor={'#fff'}
+					textStyle={styles.tabBarText}
+					underlineStyle={styles.tabBarUnderline}
+					style={{height: 35}}
+					/>
+	}
+}
+  
 const styles = StyleSheet.create({
-	container: {
-		flex: 1, 
-		justifyContent: 'space-evenly', 
-		alignItems: 'center', 
+	tabBarText: {
+		fontSize: 13, 
+		textAlign: 'center',
 	},
-	button: {
-		backgroundColor:'#ff2d55', 
-		justifyContent: 'center', 
-		alignItems: 'center', 
-		width: 100, 
-		height: 50,
+	tabBarUnderline: {
+		width: 24, 
+		marginHorizontal: (width-24*5)/10, 
+		backgroundColor: '#fff',
+		borderRadius: 4,
+		marginBottom: 2,
 	}
 })
-  

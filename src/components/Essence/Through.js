@@ -13,45 +13,64 @@ import WaterfallPage from '../Base/WaterfallPage';
 import API from '../../configs/API';
 
 
-export default class Essence extends Component {
-	static navigationOptions = ({navigation}) => ({
-		headerLeft: <NavItem 
-						source={{uri: 'nav_game'}} 
-						onPress={() => navigation.navigate('Detail')} 
-						/>,
-		headerRight: <NavItem 
+export default class Through extends Component {
+	static navigationOptions = ({navigation}) => {
+		return {
+			headerRight: <NavItem 
 						source={{uri: 'nav_random'}} 
-						onPress={() => navigation.navigate('Through')} 
+						onPress={navigation.state.params && navigation.state.params._onPress} 
 						/>,
-	})
+		}
+	}
+
+	_onPress = () => {
+		this.lists[this.scroll.state.currentPage].onRefreshing();
+	}
+
+	componentDidMount = () => {
+		const { navigation } = this.props
+		navigation.setParams({
+			_onPress: this._onPress,
+		})
+	}
+
 	render() {
 		const {navigation} = this.props;
+		this.lists = [];
 		return (
-			<ScrollableTabView renderTabBar={this._renderTabBar}>
+			<ScrollableTabView 
+				renderTabBar={this._renderTabBar}
+				ref={scroll => this.scroll = scroll} 
+				>
 				<ListPage 
-					tabLabel="推荐" 
+					tabLabel="全部"
+					ref={all => this.lists[0] = all} 
 					navigation={navigation} 
-					api={API.essence.recommend} 
+					api={API.through.all} 
 					/>
-				<WaterfallPage 
+				<ListPage
 					tabLabel="视频" 
+					ref={video => this.lists[1] = video} 
 					navigation={navigation} 
-					api={API.essence.video} 
+					api={API.through.video} 
 					/>
 				<ListPage 
 					tabLabel="图片" 
+					ref={picture => this.lists[2] = picture} 
 					navigation={navigation} 
-					api={API.essence.picture} 
+					api={API.through.picture} 
 					/>
 				<ListPage 
-					tabLabel="笑话" 
+					tabLabel="段子" 
+					ref={joke => this.lists[3] = joke}
 					navigation={navigation} 
-					api={API.essence.joke} 
+					api={API.through.joke} 
 					/>
 				<ListPage 
-					tabLabel="排行" 
+					tabLabel="声音" 
+					ref={audio => this.lists[4] = audio}
 					navigation={navigation} 
-					api={API.essence.hot} 
+					api={API.through.audio} 
 					/>
 			</ScrollableTabView>	
 		)

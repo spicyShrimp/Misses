@@ -43,3 +43,8 @@ react native
 * 视频页瀑布流布局
 * 视频页接口调用
 ![](./exhibition/7.png)
+
+5.5
+* 一级页面基本完成布局与逻辑
+* 由于布局的复用性,恢复列表的redux模式为手动管理state,详情页继续采用redux
+![](./exhibition/8.png)

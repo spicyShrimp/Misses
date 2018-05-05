@@ -13,6 +13,7 @@ import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/Car
 import { ios, statusBarHeight } from '../../configs/Device';
 import NavItem from './NavItem';
 import Tab from './Tab';
+import Through from '../Essence/Through';
 import Detail from '../Detail';
 import Publish from '../Publish';
 import Web from '../Base/Web';
@@ -50,6 +51,7 @@ const navigationOptions = ({navigation}) => {
 const Main = StackNavigator(
     {
         Tab,
+        Through,
         Detail,
         Web,
     },

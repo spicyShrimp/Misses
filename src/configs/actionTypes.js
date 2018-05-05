@@ -1,8 +1,3 @@
-export const EssenceType = {
-    LOAD_RECOMMEND_LIST: 'LOAD_RECOMMEND_LIST',
-    LOAD_VIDEO_LIST: 'LOAD_VIDEO_LIST',
-}
-
 export const FetchType = {
     FETCH_SUBSCRIBE_LIST: 'FETCH_SUBSCRIBE_LIST',
 }

@@ -9,9 +9,7 @@ import {
     FlatList,
 } from 'react-native';
 import PlacehoderImage from '../Base/PlacehoderImage';
-import { connect } from 'react-redux';
 import { width, height } from '../../configs/Device';
-import { loadRecommendList } from '../../actions/Essence/Recommend';
 
 class PlayImage extends Component {
     constructor() {
@@ -39,7 +37,7 @@ class PlayImage extends Component {
                     placeholder={placeholder}
                     resizeMode={resizeMode}
                     style={style}
-                    onLoad={() => this._onLoad()}
+                    onLoad={this._onLoad}
                     />
                 <PlacehoderImage 
                     source={playSource}
@@ -49,7 +47,7 @@ class PlayImage extends Component {
         )
     }
 
-    _onLoad() {
+    _onLoad = () => {
         this.setState({
             didLoad: true,
         })
@@ -57,41 +55,76 @@ class PlayImage extends Component {
 }
 
 
-class Recommend extends Component {
-    componentWillMount() {
-        const {data, loadRecommendList } = this.props;
-        loadRecommendList(data, false, 0);
+export default class ListPage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            refreshing: false,
+            data: [],
+            np: 0,
+        }
+    }
+    componentWillMount = () => {
+        this.onRefreshing();
     }
 
     render() {
-        const { refreshing, np, data, loadRecommendList } = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
-                    data={data}
-                    renderItem={(props) => this._renderItem(props)}
-                    ItemSeparatorComponent={() => this._ItemSeparatorComponent()}
-                    refreshing={refreshing}
-                    onRefresh={() => loadRecommendList(data, false, 0)}
+                    data={this.state.data}
+                    renderItem={this._renderItem}
+                    ItemSeparatorComponent={this._ItemSeparatorComponent}
+                    refreshing={this.state.refreshing}
+                    onRefresh={this.onRefreshing}
                     onEndReachedThreshold={0.5}
-                    onEndReached={() => loadRecommendList(data, true, np)}
-                    keyExtractor={(item, index) => this._keyExtractor(item, index)}
+                    onEndReached={this._onEndReached}
+                    keyExtractor={this._keyExtractor}
                     />
             </SafeAreaView>
         );
     }
 
-    _ItemSeparatorComponent() {
+    onRefreshing = () => {
+        this.setState({
+            refreshing: true,
+        })
+        const { api } = this.props;
+        fetch(api + '0-20.json')
+        .then((response) => response.json())
+        .then((jsonData) => {
+            this.setState({
+                refreshing: false,
+                data: jsonData.list,
+                np: jsonData.info.np || 0,
+    
+            })
+        });
+    }
+
+    _onEndReached = () => {
+        const { api } = this.props;
+        fetch(api + this.state.np + '-20.json')
+        .then((response) => response.json())
+        .then((jsonData) => {
+            this.setState({
+                data: [...this.state.data, ...jsonData.list],
+                np: jsonData.info.np,
+            })
+        });
+    }
+
+    _ItemSeparatorComponent = () => {
         return (
             <View style={{height: 0.5, backgroundColor: 'rgba(100,100, 100, 0.2)'}} />
         )
     }
 
-    _keyExtractor(item, index) {
+    _keyExtractor = (item, index) => {
         return item.text + index;
     }
 
-    _renderItemContent(item) {
+    _renderItemContent = (item) => {
         let image, imageWidth, imageHeight, refWidth, refHeight;
         if (item.type === 'image') {
             imageWidth = width - 20;
@@ -153,7 +186,7 @@ class Recommend extends Component {
     }
 
 
-    _renderItem({item}) {
+    _renderItem = ({item}) => {
         return (
             <View style={styles.item}>
                 <TouchableOpacity 
@@ -182,11 +215,11 @@ class Recommend extends Component {
         )
     }
 
-    _goToUser(user) {
+    _goToUser = (user) => {
         this.props.navigation.navigate('Detail', {title: user.name});
     }
 
-    _goToDetail(item) {
+    _goToDetail = (item) => {
         this.props.navigation.navigate('Detail', {title: item.text});
     }
 };
@@ -214,15 +247,4 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = state => ({
-    refreshing: state.Recommend.refreshing,
-    np: state.Recommend.np,
-    data: state.Recommend.data,
-});
 
-const mapDispatchToProps = {
-    loadRecommendList,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Recommend);
-  

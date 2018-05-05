@@ -23,12 +23,12 @@ export default class PlacehoderImage extends Component {
                         resizeMode={resizeMode || FastImage.resizeMode.cover}
                         style={style}
                         
-                        onLoadStart={() => this._onLoadStart()}
-                        onProgress={() => this._onProgress()}
-                        onLoad={() => this._onLoad()}
-                        onError={() => this._onError()}
-                        onLoadEnd={() => this._onLoadEnd()}
-                        onLayout={() => this._onLayout()}
+                        onLoadStart={this._onLoadStart}
+                        onProgress={this._onProgress}
+                        onLoad={this._onLoad}
+                        onError={this._onError}
+                        onLoadEnd={this._onLoadEnd}
+                        onLayout={this._onLayout}
                         />       
                 </ImageBackground>
             )
@@ -39,28 +39,28 @@ export default class PlacehoderImage extends Component {
                     resizeMode={resizeMode || FastImage.resizeMode.cover}
                     style={style}
 
-                    onLoadStart={() => this._onLoadStart()}
-                    onProgress={() => this._onProgress()}
-                    onLoad={() => this._onLoad()}
-                    onError={() => this._onError()}
-                    onLoadEnd={() => this._onLoadEnd()}
-                    onLayout={() => this._onLayout()}
+                    onLoadStart={this._onLoadStart}
+                    onProgress={this._onProgress}
+                    onLoad={this._onLoad}
+                    onError={this._onError}
+                    onLoadEnd={this._onLoadEnd}
+                    onLayout={this._onLayout}
                     /> 
             )
         }
     }
 
-    _onLoadStart() {
+    _onLoadStart = () => {
         const { onLoadStart } = this.props;
         onLoadStart && onLoadStart();
     }
 
-    _onProgress() {
+    _onProgress = () => {
         const { onProgress } = this.props;
         onProgress && onProgress();   
     }
 
-    _onLoad() {
+    _onLoad = () => {
         this.setState({
             mDidLoad: true,
         })
@@ -68,18 +68,17 @@ export default class PlacehoderImage extends Component {
         onLoad && onLoad();
     }
 
-    _onError() {
-        console.log('_onError');
+    _onError = () => {
         const { onError } = this.props;
         onError && onError();
     }
 
-    _onLoadEnd() {
+    _onLoadEnd = () => {
         const { onLoadEnd } = this.props;
         onLoadEnd && onLoadEnd();
     }
 
-    _onLayout() {
+    _onLayout = () => {
         const { onLayout } = this.props;
         onLayout && onLayout();
     }
