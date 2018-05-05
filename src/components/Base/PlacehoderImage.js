@@ -10,27 +10,38 @@ export default class PlacehoderImage extends Component {
         }
     }
     render() {
-        const {source, style, placeholder, resizeMode } = this.props;
+        const { placeholder } = this.props;
         if (placeholder) {
             return (
                 <ImageBackground
                     source={this.state.mDidLoad ? {uri:'clear_placeholder'} : placeholder}
                     resizeMode={FastImage.resizeMode.center}
-                    style={style}
+                    style={{flex: 1}}
                     >
-                    <FastImage 
-                        source={source}
-                        resizeMode={resizeMode || FastImage.resizeMode.cover}
-                        style={style}
-                        
-                        onLoadStart={this._onLoadStart}
-                        onProgress={this._onProgress}
-                        onLoad={this._onLoad}
-                        onError={this._onError}
-                        onLoadEnd={this._onLoadEnd}
-                        onLayout={this._onLayout}
-                        />       
+                    {this._renderImage()}      
                 </ImageBackground>
+            )
+        } else {
+            return this._renderImage()
+        }
+    }
+
+    _renderImage = () => {
+        const {source, style, resizeMode } = this.props;
+        if (source.uri.indexOf('http') < 0) {
+            return (
+                <Image 
+                    source={source}
+                    resizeMode={resizeMode || FastImage.resizeMode.cover}
+                    style={style}
+
+                    onLoadStart={this._onLoadStart}
+                    onProgress={this._onProgress}
+                    onLoad={this._onLoad}
+                    onError={this._onError}
+                    onLoadEnd={this._onLoadEnd}
+                    onLayout={this._onLayout}
+                />
             )
         } else {
             return (
@@ -45,7 +56,7 @@ export default class PlacehoderImage extends Component {
                     onError={this._onError}
                     onLoadEnd={this._onLoadEnd}
                     onLayout={this._onLayout}
-                    /> 
+                    />
             )
         }
     }

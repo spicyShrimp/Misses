@@ -41,7 +41,7 @@ class PlayImage extends Component {
                     />
                 <PlacehoderImage 
                     source={playSource}
-                    style={hidePlay ? (this.state.didLoad ? {opacity: 0} : playStyle) : playStyle}
+                    style={hidePlay ? (this.state.didLoad ? {opciaty: 0} : playStyle) : playStyle}
                     />
             </View>
         )
@@ -179,7 +179,7 @@ export default class ListPage extends Component {
         } else {
             return (
                 <View>
-                    <Text style={{fontSize: 12}}>{item.text}</Text>
+                    <Text style={{fontSize: 12, maxHeight: 100}}>{item.text}</Text>
                 </View>
             )
         }
