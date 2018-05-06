@@ -1,39 +1,43 @@
 import React, { Component } from 'react'
-import { ImageBackground, Image } from 'react-native'
+import { Image, View, StyleSheet } from 'react-native'
 import FastImage from 'react-native-fast-image'
 
 export default class PlacehoderImage extends Component {
     constructor() {
         super();
         this.state = {
-            mDidLoad: false,
+            mloading: true,
         }
     }
     render() {
-        const { placeholder, style } = this.props;
-        if (placeholder) {
-            return (
-                <ImageBackground
-                    source={this.state.mDidLoad ? {visibility: 'hidden'} : placeholder}
-                    resizeMode={FastImage.resizeMode.center}
-                    style={{width: style.width, height: style.height}}
-                    >
-                    {this._renderImage()}      
-                </ImageBackground>
-            )
-        } else {
-            return this._renderImage();
-        }
+        const { style, placeholder } = this.props;
+        return (
+            <View style={style}>
+                {this._renderImage()}
+                {(this.state.mloading && placeholder) ? this._renderPlaceholder() : null}
+            </View>
+        )
+    }
+
+    _renderPlaceholder = () => {
+        const { placeholder } = this.props;
+        return (
+            <Image 
+                source={placeholder}
+                resizeMode={FastImage.resizeMode.contain}
+                style={styles.content}
+                />
+        )
     }
 
     _renderImage = () => {
-        const {source, style, resizeMode } = this.props;
+        const { source, resizeMode } = this.props;
         const ImageType = source.uri.indexOf('http') < 0 ? Image : FastImage;
         return (
             <ImageType 
                 source={source}
                 resizeMode={resizeMode || FastImage.resizeMode.cover}
-                style={style}
+                style={styles.content}
 
                 onLoadStart={this._onLoadStart}
                 onProgress={this._onProgress}
@@ -57,7 +61,7 @@ export default class PlacehoderImage extends Component {
 
     _onLoad = () => {
         this.setState({
-            mDidLoad: true,
+            mloading: false,
         })
         const { onLoad } = this.props;
         onLoad && onLoad();
@@ -78,3 +82,13 @@ export default class PlacehoderImage extends Component {
         onLayout && onLayout();
     }
 }
+
+const styles = StyleSheet.create({
+    content: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    }
+})

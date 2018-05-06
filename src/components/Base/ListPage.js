@@ -15,7 +15,7 @@ class PlayImage extends Component {
     constructor() {
         super();
         this.state = {
-            didLoad: false,
+            didload: false,
         }
     }
 
@@ -39,17 +39,24 @@ class PlayImage extends Component {
                     style={style}
                     onLoad={this._onLoad}
                     />
-                <PlacehoderImage 
-                    source={playSource}
-                    style={hidePlay ? (this.state.didLoad ? {visibility: 'hidden'} : playStyle) : playStyle}
-                    />
+                {(this.state.didload && !hidePlay) ? this._renderPlay() : null}
             </View>
+        )
+    }
+
+    _renderPlay = () => {
+        const { playSource, playStyle } = this.props;
+        return (
+            <PlacehoderImage 
+                source={playSource}
+                style={playStyle}
+                />
         )
     }
 
     _onLoad = () => {
         this.setState({
-            didLoad: true,
+            didload: true,
         })
     }
 }
