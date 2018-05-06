@@ -39,7 +39,7 @@ class PlayImage extends Component {
                     style={style}
                     onLoad={this._onLoad}
                     />
-                {(this.state.didload && !hidePlay) ? this._renderPlay() : null}
+                {(!this.state.didload || !hidePlay) ? this._renderPlay() : null}
             </View>
         )
     }
