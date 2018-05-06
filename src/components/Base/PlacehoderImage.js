@@ -6,15 +6,15 @@ export default class PlacehoderImage extends Component {
     constructor() {
         super();
         this.state = {
-            mloading: true,
+            contentDidLoad: false,
         }
     }
     render() {
         const { style, placeholder } = this.props;
         return (
             <View style={style}>
+                {(!this.state.contentDidLoad && placeholder) ? this._renderPlaceholder() : null}
                 {this._renderImage()}
-                {(this.state.mloading && placeholder) ? this._renderPlaceholder() : null}
             </View>
         )
     }
@@ -61,7 +61,7 @@ export default class PlacehoderImage extends Component {
 
     _onLoad = () => {
         this.setState({
-            mloading: false,
+            contentDidLoad: true,
         })
         const { onLoad } = this.props;
         onLoad && onLoad();
