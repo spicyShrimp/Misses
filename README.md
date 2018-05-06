@@ -48,3 +48,8 @@ react native
 * 一级页面基本完成布局与逻辑
 * 由于布局的复用性,恢复列表的redux模式为手动管理state,详情页继续采用redux
 ![](./exhibition/8.png)
+
+5.5
+* 视频接入
+* 简单处理视频播放和屏幕选准
+![](./exhibition/9.gif)

@@ -12,8 +12,8 @@ import PlacehoderImage from '../Base/PlacehoderImage';
 import { width, height } from '../../configs/Device';
 
 class PlayImage extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             didload: false,
         }
@@ -223,11 +223,11 @@ export default class ListPage extends Component {
     }
 
     _goToUser = (user) => {
-        this.props.navigation.navigate('Detail', {title: user.name});
+        this.props.navigation.navigate('Detail', {user});
     }
 
     _goToDetail = (item) => {
-        this.props.navigation.navigate('Detail', {title: item.text});
+        this.props.navigation.navigate('VideoDetail', {item});
     }
 };
 

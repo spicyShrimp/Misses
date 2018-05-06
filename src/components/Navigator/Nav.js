@@ -15,6 +15,7 @@ import NavItem from './NavItem';
 import Tab from './Tab';
 import Through from '../Essence/Through';
 import Detail from '../Detail';
+import VideoDetail from '../Detail/VideoDetial';
 import Publish from '../Publish';
 import Web from '../Base/Web';
 
@@ -53,6 +54,7 @@ const Main = StackNavigator(
         Tab,
         Through,
         Detail,
+        VideoDetail,
         Web,
     },
     {
@@ -73,12 +75,8 @@ const Main = StackNavigator(
 
 export default StackNavigator(
     {
-        Main: { 
-            screen: Main, 
-        },
-        Publish: { 
-            screen: Publish, 
-        },
+        Main,
+        Publish,
     },
     {
         mode: 'modal',

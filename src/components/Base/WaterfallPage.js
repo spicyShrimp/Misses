@@ -7,8 +7,8 @@ import { width, height } from '../../configs/Device';
 const itemWidth = (width - 16) / 2;
 
 export default class WaterfallPage extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             refreshing: false,
             data: [],
