@@ -227,7 +227,9 @@ export default class ListPage extends Component {
     }
 
     _goToDetail = (item) => {
-        this.props.navigation.navigate('VideoDetail', {item});
+        if (item.type === 'video') {
+            this.props.navigation.navigate('VideoDetail', {item});
+        }
     }
 };
 
