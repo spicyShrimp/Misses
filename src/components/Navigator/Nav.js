@@ -49,6 +49,19 @@ const navigationOptions = ({navigation}) => {
     }
 };
 
+const transitionConfig = ({scene}) => {
+    if (scene.route.routeName === 'VideoDetail') {
+        return {
+            screenInterpolator: CardStackStyleInterpolator.forFade,
+        }
+    } else {
+        return {
+            screenInterpolator: CardStackStyleInterpolator.forHorizontal,
+        }
+    }
+    
+}
+
 const Main = StackNavigator(
     {
         Tab,
@@ -62,14 +75,7 @@ const Main = StackNavigator(
         mode: 'card',
         headerMode: 'screen',
         navigationOptions,
-        transitionConfig: () => ({ 
-            // transitionSpec: {
-            //     duration: 250,
-            //     easing: Easing.linear,
-            //     timing: Animated.timing,
-            // },
-            screenInterpolator: CardStackStyleInterpolator.forHorizontal,
-        })
+        transitionConfig,
     }
 )
 
