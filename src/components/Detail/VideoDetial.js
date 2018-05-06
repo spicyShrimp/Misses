@@ -8,7 +8,7 @@ import {
     StyleSheet
 } from 'react-native';
 import Video from 'react-native-video';
-// import { width, height } from '../../configs/Device';
+import { statusBarHeight } from '../../configs/Device';
 import Orientation from 'react-native-orientation';
 
 export default class VideoDetial extends Component {
@@ -26,12 +26,12 @@ export default class VideoDetial extends Component {
     }
 
     componentWillMount = () => {
-        StatusBar.setHidden(true, true);
+        // StatusBar.setHidden(true, false);
         Orientation.lockToPortrait();
     }
 
     componentWillUnmount() {
-        StatusBar.setHidden(false, true);
+        StatusBar.setHidden(false, false);
         Orientation.lockToPortrait();
     }
     
@@ -40,7 +40,7 @@ export default class VideoDetial extends Component {
         const { item } = this.props.navigation.state.params;
         console.log(item);
         return (
-            <SafeAreaView style={{flex: 1}} onLayout={this._onLayout}>
+            <View style={{flex: 1}} onLayout={this._onLayout}>
                 <TouchableOpacity 
                     activeOpacity={1.0}
                     onPress={this._videoOnPress}>
@@ -61,12 +61,24 @@ export default class VideoDetial extends Component {
                         // onProgress={this.setTime}
                         // onEnd={this.onEnd}
                         onError={this.videoError}
-                        style={{width: this.state.width, height: this.state.orientation === 'PORTRAIT' ? (this.state.width / item.video.width * item.video.height) : this.state.height}} 
+                        style={{
+                            width: this.state.width, 
+                            height: this.state.orientation === 'PORTRAIT' ? (this.state.width / item.video.width * item.video.height) : this.state.height
+                        }} 
                         />
                 </TouchableOpacity>
                 <TouchableOpacity 
                     activeOpacity={0.7}
-                    style={{backgroundColor: '#f00', width: 50, height: 50, position: 'absolute', left: 20, top: 50, justifyContent: 'center', alignItems: 'center'}}
+                    style={{
+                        backgroundColor: '#f00', 
+                        width: 44, 
+                        height: 44, 
+                        position: 'absolute', 
+                        left: statusBarHeight, 
+                        top: statusBarHeight, 
+                        justifyContent: 'center', 
+                        alignItems: 'center'
+                    }}
                     onPress={()=>{
                         Orientation.lockToPortrait();
                         this.props.navigation.goBack();
@@ -74,7 +86,7 @@ export default class VideoDetial extends Component {
                     >
                     <Text>返回</Text>
                 </TouchableOpacity>
-            </SafeAreaView>
+            </View>
         )
     }
 
@@ -89,12 +101,14 @@ export default class VideoDetial extends Component {
     _videoOnPress = () => {
         Orientation.getOrientation((err, orientation) => {
             if (orientation === 'PORTRAIT') {
+                StatusBar.setHidden(true, false);
                 Orientation.lockToLandscape();
                 this.setState({
                     orientation: 'LANDSCAPE',
                 })
             } else {
                 const { item } = this.props.navigation.state.params;
+                StatusBar.setHidden(false, false);
                 Orientation.lockToPortrait();
                 this.setState({
                     orientation: 'PORTRAIT',

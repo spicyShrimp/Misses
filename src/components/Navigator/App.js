@@ -32,7 +32,10 @@ class App extends Component {
 
     onBackAndroid = () => {
         const { dispatch, Navigator } = this.props;
-        if (Navigator.routes.length > 1) {
+        console.log(Navigator);
+        if (Navigator.routes[0] &&
+            Navigator.routes[0].routes &&
+            Navigator.routes[0].routes.length > 1) {
             dispatch( NavigationActions.back() );
             return true;
         }

@@ -78,7 +78,10 @@ export default class WaterfallPage extends React.Component {
     _renderItem = ({item}) => {
         const itemHeight = this._getHeightForItem({item});
         return (
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity 
+                activeOpacity={0.7}
+                onPress={() => this._onPress(item)}
+                style={styles.item}>
                 <PlacehoderImage 
                     source={{uri: item.video.thumbnail[0]}}
                     placeholder={{uri: 'placeholder'}}
@@ -86,6 +89,10 @@ export default class WaterfallPage extends React.Component {
                     />
             </TouchableOpacity>
         )
+    }
+
+    _onPress = (item) => {
+        this.props.navigation.navigate('VideoDetail', {item});
     }
 
 }
