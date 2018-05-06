@@ -66,7 +66,7 @@ export default class VideoDetial extends Component {
                 </TouchableOpacity>
                 <TouchableOpacity 
                     activeOpacity={0.7}
-                    style={{backgroundColor: '#f00', width: 50, height: 50, position: 'absolute', left: 20, top: 20, justifyContent: 'center', alignItems: 'center'}}
+                    style={{backgroundColor: '#f00', width: 50, height: 50, position: 'absolute', left: 20, top: 50, justifyContent: 'center', alignItems: 'center'}}
                     onPress={()=>{
                         Orientation.lockToPortrait();
                         this.props.navigation.goBack();
