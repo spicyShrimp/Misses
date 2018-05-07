@@ -7,26 +7,18 @@ import {
     StatusBar,
     StyleSheet
 } from 'react-native';
-import Video from 'react-native-video';
-import { statusBarHeight } from '../../configs/Device';
+import MSVideo from '../Base/MSVideo';
+import { width, height, statusBarHeight } from '../../configs/Device';
 import Orientation from 'react-native-orientation';
 
 export default class VideoDetial extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            orientation: 'PORTRAIT',
-            // width,
-            paused: false,
-        }
-    }
-
+    
     static navigationOptions = {
         headerStyle: {display: 'none'},
     }
 
     componentWillMount = () => {
-        // StatusBar.setHidden(true, false);
+        StatusBar.setHidden(false, false);
         Orientation.lockToPortrait();
     }
 
@@ -41,32 +33,13 @@ export default class VideoDetial extends Component {
         console.log(item);
         return (
             <View style={{flex: 1}} onLayout={this._onLayout}>
-                <TouchableOpacity 
-                    activeOpacity={1.0}
-                    onPress={this._videoOnPress}>
-                    <Video 
-                        source={{uri: item.video.video[0]}}
-                        ref={(ref) => { this.player = ref }}
-                        rate={1.0}
-                        volume={1.0}
-                        ignoreSilentSwitch={'ignore'}
-                        muted={false}            
-                        paused={this.state.paused}
-                        resizeMode={'contain'}
-                        repeat={true}
-                        playInBackground={false}
-                        playWhenInactive={false}
-                        // onLoadStart={this.loadStart}
-                        // onLoad={this.setDuration}
-                        // onProgress={this.setTime}
-                        // onEnd={this.onEnd}
-                        onError={this.videoError}
-                        style={{
-                            width: this.state.width, 
-                            height: this.state.orientation === 'PORTRAIT' ? (this.state.width / item.video.width * item.video.height) : this.state.height
-                        }} 
-                        />
-                </TouchableOpacity>
+                <MSVideo 
+                    source={{uri: item.video.video[0]}}
+                    style={{
+                        width: width, 
+                        height: (width / item.video.width * item.video.height)
+                    }}
+                    />
                 <TouchableOpacity 
                     activeOpacity={0.7}
                     style={{
@@ -88,34 +61,6 @@ export default class VideoDetial extends Component {
                 </TouchableOpacity>
             </View>
         )
-    }
-
-    _onLayout = (event) => {
-        const {width, height} = event.nativeEvent.layout;
-        this.setState({
-            width,
-            height,
-        })
-    }
-    
-    _videoOnPress = () => {
-        Orientation.getOrientation((err, orientation) => {
-            if (orientation === 'PORTRAIT') {
-                StatusBar.setHidden(true, false);
-                Orientation.lockToLandscape();
-                this.setState({
-                    orientation: 'LANDSCAPE',
-                })
-            } else {
-                const { item } = this.props.navigation.state.params;
-                StatusBar.setHidden(false, false);
-                Orientation.lockToPortrait();
-                this.setState({
-                    orientation: 'PORTRAIT',
-                })
-            }
-        })
-        
     }
 }
 
