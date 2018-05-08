@@ -94,7 +94,7 @@ class Friend extends Component {
     }
 
     _goToDetail = (item) => {
-        this.props.navigation.navigate('Detail', {title: item.theme_name});
+        this.props.navigation.navigate('FriendDetail', {title: item.theme_name});
     }
 };
 

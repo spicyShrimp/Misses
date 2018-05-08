@@ -15,6 +15,7 @@ import NavItem from './NavItem';
 import Tab from './Tab';
 import Through from '../Essence/Through';
 import Detail from '../Detail';
+import FriendDetail from '../Friend/FriendDetail';
 import VideoDetail from '../Detail/VideoDetial';
 import Publish from '../Publish';
 import Web from '../Base/Web';
@@ -69,6 +70,7 @@ const Main = StackNavigator(
         Detail,
         VideoDetail,
         Web,
+        FriendDetail,
     },
     {
         initialRouteName: 'Tab',
