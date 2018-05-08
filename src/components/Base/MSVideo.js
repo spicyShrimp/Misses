@@ -442,7 +442,7 @@ export default class MSVideo extends Component {
                 />
             </TouchableOpacity>
             )}
-            {(Platform.OS === 'android' || this.props.disableFullscreen) ? null : (
+            {this.props.disableFullscreen ? null : (
             <TouchableOpacity onPress={this.onToggleFullScreen} style={customStyles.controlButton}>
                 <Icon
                 style={[styles.extraControl, customStyles.controlIcon]}
@@ -498,7 +498,7 @@ export default class MSVideo extends Component {
                     this.onPlayPress();
                 }}
                 onLongPress={() => {
-                if (fullScreenOnLongPress && Platform.OS !== 'android')
+                if (fullScreenOnLongPress)
                     this.onToggleFullScreen();
                 }}
             />
