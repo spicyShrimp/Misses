@@ -22,7 +22,7 @@ export default class VideoDetial extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            portrait: true,
+            portrait: Orientation.getInitialOrientation == 'PORTRAIT',
             navOpciaty:0,
 
             refreshing: false,
@@ -38,7 +38,7 @@ export default class VideoDetial extends Component {
     }
 
     componentWillMount = () => {
-        StatusBar.setHidden(false, false);
+        StatusBar.setHidden(true, false);
         Orientation.lockToPortrait();
         this.setState({portrait: true})
     }
@@ -55,16 +55,16 @@ export default class VideoDetial extends Component {
     
 
     render() {
-        const { navOpciaty } = this.state;
+        const { navOpciaty, portrait, refreshing, data } = this.state;
         return (
             <View style={{flex: 1}}>
                 <FlatList 
                     ref={ref => this.flatList = ref}
-                    data={this.state.data}
-                    scrollEnabled={this.state.portrait}
+                    data={data}
+                    scrollEnabled={portrait}
                     ListHeaderComponent={this._ListHeaderComponent}
                     renderItem={this._renderItem}
-                    refreshing={this.state.refreshing}
+                    refreshing={refreshing}
                     onRefresh={this._onRefrsh}
                     onEndReachedThreshold={0.5}
                     onEndReached={this._onEndReached}
@@ -73,53 +73,67 @@ export default class VideoDetial extends Component {
                     stickySectionHeadersEnabled={false}
                     onScroll={this._onScroll}
                     />
-                <View style={[styles.navBar, {backgroundColor: 'rgba(255,45,85,' + navOpciaty + ')'}]}>
+                <View style={portrait ? [styles.navBar, {backgroundColor: 'rgba(255,255,255,' + navOpciaty + ')'}] : {display: 'none'}}>
                     <NavItem 
-                        source={{uri: 'nav_back'}} 
-                        onPress={() => {
-                            Orientation.lockToPortrait();
-                            this.props.navigation.goBack();
-                        }}
-                        />,
+                        source={{uri: 'detail_back'}} 
+                        onPress={this._onPressBack}
+                        />
+                    <NavItem 
+                        source={{uri: 'detail_ding'}}
+                        />
+                    <NavItem 
+                        source={{uri: 'detail_cai'}}
+                        />
+                    <NavItem 
+                        source={{uri: 'detail_share'}}
+                        />
                 </View>
                 
             </View>
         )
     }
 
+    _onPressBack = () => {
+        if (this.state.portrait) {
+            this.props.navigation.goBack();
+        } else {
+            this._onToggleFullScreen();
+        }
+    }
+
     _ListHeaderComponent = () => {
         const { item } = this.props.navigation.state.params;
+        const { portrait } = this.state;
         return (
             <View>
                 <MSVideo
+                    endWithThumbnail={true}
+                    thumbnail={{uri: item.video.thumbnail[0]}}
+                    portrait={portrait}
                     ref={ref => this.video = ref}
-                    source={{uri: item.video.video[0]}}
-                    style={{
-                        width: width, 
-                        height: (width / item.video.width * item.video.height)
-                    }}
-                    onPress={this._onPress}
-                    toogleFullScreen={this._toogleFullScreen}
-                    tooglePlay={this._tooglePlay}
-                />
+                    video={{uri: item.video.video[0]}}
+                    videoWidth={portrait ? width : height}
+                    videoHeight={portrait ? (width / item.video.width * item.video.height): width}
+                    onToggleFullScreen={this._onToggleFullScreen}
+                    autoplay={true}
+                    loop={true}
+                    />
             </View>
             
         )
     }
 
-    _onPress = () => {
-        this.video._tooglePlay();
-    }
-    _tooglePlay = (paused) => {
-        console.log(paused);
-    }
-
-    _toogleFullScreen =(portrait) => {
-        if (!portrait) {
-            this.flatList.scrollToOffset(0, false);
+    _onToggleFullScreen =() => {
+        const { portrait } = this.state;
+        if (portrait) {
+            Orientation.lockToLandscapeLeft();
+        } else {
+            Orientation.lockToPortrait();
         }
-        this.setState({portrait});
-        StatusBar.setHidden(!portrait, false);
+        this.setState({portrait: !portrait});
+        setTimeout(() => {
+            this.flatList.scrollToOffset(0, true);
+        }, 0);
     }
 
     _renderItem = ({item}) => {
@@ -140,7 +154,7 @@ export default class VideoDetial extends Component {
 
     _onRefrsh = () => {
         const { item } = this.props.navigation.state.params;
-        this.setState({refreshing: true});
+        // this.setState({refreshing: true});
         fetch(API.comment(item.id, this.state.np))
         .then((response) => response.json())
         .then((jsonData) => {
@@ -155,6 +169,9 @@ export default class VideoDetial extends Component {
     }
 
     _onEndReached = () => {
+        if (this.state.np == 0) {
+            return;
+        }
         const { item } = this.props.navigation.state.params;
         fetch(API.comment(item.id, this.state.np))
         .then((response) => response.json())
@@ -188,8 +205,7 @@ const styles = StyleSheet.create({
         position: 'absolute', 
         flexDirection: 'row', 
         width, 
-        height: statusBarHeight + 44, 
-        paddingTop: statusBarHeight, 
+        height: 44,
         alignItems: 'center',
     }
 
