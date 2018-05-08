@@ -10,7 +10,7 @@ import {
 	FlatList,
 	Image,
 } from 'react-native';
-import { width, statusBarHeight, isIPhoneX } from '../../configs/Device';
+import { width, statusBarHeight, ios, isIPhoneX } from '../../configs/Device';
 
 export default class Publish extends Component {
 	data = [
@@ -70,7 +70,7 @@ export default class Publish extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingTop: statusBarHeight,
+		paddingTop: ios ? 0 : statusBarHeight,
 		alignItems: 'center',
 		justifyContent: 'center',
 	},

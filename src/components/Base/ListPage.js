@@ -8,59 +8,9 @@ import {
     TextInput,
     FlatList,
 } from 'react-native';
-import PlacehoderImage from '../Base/PlacehoderImage';
+import PlacehoderImage from './PlacehoderImage';
+import PlayImage from './PlayImage';
 import { width, height } from '../../configs/Device';
-
-class PlayImage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            didload: false,
-        }
-    }
-
-    render () {
-        const { 
-            source, 
-            resizeMode,
-            style,
-            placeholder,
-            playSource,
-            playStyle,
-            hidePlay,
-        } = this.props;
-
-        return (
-            <View>
-                <PlacehoderImage
-                    source={source}
-                    placeholder={placeholder}
-                    resizeMode={resizeMode}
-                    style={style}
-                    onLoad={this._onLoad}
-                    />
-                {(!this.state.didload || !hidePlay) ? this._renderPlay() : null}
-            </View>
-        )
-    }
-
-    _renderPlay = () => {
-        const { playSource, playStyle } = this.props;
-        return (
-            <PlacehoderImage 
-                source={playSource}
-                style={playStyle}
-                />
-        )
-    }
-
-    _onLoad = () => {
-        this.setState({
-            didload: true,
-        })
-    }
-}
-
 
 export default class ListPage extends Component {
     constructor() {
@@ -97,7 +47,7 @@ export default class ListPage extends Component {
             refreshing: true,
         })
         const { api } = this.props;
-        fetch(api + '0-20.json')
+        fetch(api(this.state.np))
         .then((response) => response.json())
         .then((jsonData) => {
             this.setState({
@@ -111,7 +61,7 @@ export default class ListPage extends Component {
 
     _onEndReached = () => {
         const { api } = this.props;
-        fetch(api + this.state.np + '-20.json')
+        fetch(api(this.state.np))
         .then((response) => response.json())
         .then((jsonData) => {
             this.setState({

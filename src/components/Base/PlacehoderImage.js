@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Image, View, StyleSheet } from 'react-native'
 import FastImage from 'react-native-fast-image'
+import PropTypes from 'prop-types';
 
 export default class PlacehoderImage extends Component {
     constructor() {
@@ -12,7 +13,7 @@ export default class PlacehoderImage extends Component {
     render() {
         const { style, placeholder } = this.props;
         return (
-            <View style={style}>
+            <View style={[style, {overflow: 'hidden'}]}>
                 {(!this.state.contentDidLoad && placeholder) ? this._renderPlaceholder() : null}
                 {this._renderImage()}
             </View>

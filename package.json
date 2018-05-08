@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@appandflow/masonry-list": "^0.4.0",
+    "add": "^2.0.6",
+    "prop-types": "^15.6.1",
     "react": "16.3.1",
     "react-native": "0.55.3",
     "react-native-fast-image": "^4.0.12",
@@ -20,7 +22,8 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "yarn": "^1.6.0"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",

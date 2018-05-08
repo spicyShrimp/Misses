@@ -32,19 +32,24 @@ export default class Me extends Component {
 				{key: 'mine_icon_random', title: '随机穿越'},
 				{key: 'mine_icon_feedback', title: '意见反馈'},
 				{key: 'mine_icon_more', title: '更多'},
-			]
+			],
+			key: 'content',
 		}];
 		return (
 			<SafeAreaView style={styles.container}>
 				<SectionList
 					sections={[{data}]}
 					renderItem={this._renderSectionItem}
-					numColumns={numColumns}
 					ListHeaderComponent={this._ListHeaderComponent}
 					ListFooterComponent={this._ListFooterComponent}
+					keyExtractor={this._keyExtractor}
 					/>
 			</SafeAreaView>
 		)
+	}
+
+	_keyExtractor = (item, index) => {
+		return item.key;
 	}
 
 	_ListHeaderComponent = () => {
