@@ -16,9 +16,8 @@ import Tab from './Tab';
 import Through from '../Essence/Through';
 import Detail from '../Detail';
 import FriendDetail from '../Friend/FriendDetail';
-import VideoDetail from '../Detail/VideoDetial';
+import ContentDetail from '../Content/ContentDetail';
 import Publish from '../Publish';
-import Web from '../Base/Web';
 
 const navigationOptions = ({navigation}) => {
     const options = {
@@ -48,7 +47,7 @@ const navigationOptions = ({navigation}) => {
 };
 
 const transitionConfig = ({scene}) => {
-    if (scene.route.routeName === 'VideoDetail') {
+    if (scene.route.routeName === 'ContentDetail') {
         return {
             screenInterpolator: CardStackStyleInterpolator.forFade,
         }
@@ -65,8 +64,7 @@ const Main = StackNavigator(
         Tab,
         Through,
         Detail,
-        VideoDetail,
-        Web,
+        ContentDetail,
         FriendDetail,
     },
     {

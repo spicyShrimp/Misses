@@ -8,8 +8,8 @@ import {
 import { width } from '../../configs/Device';
 import NavItem from '../Navigator/NavItem';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
-import ListPage from '../Base/ListPage';
-import WaterfallPage from '../Base/WaterfallPage';
+import ContentList from '../Content/ContentList';
+import ContentWaterfall from '../Content/ContentWaterfall';
 import API from '../../configs/API';
 
 
@@ -28,27 +28,27 @@ export default class Essence extends Component {
 		const {navigation} = this.props;
 		return (
 			<ScrollableTabView renderTabBar={this._renderTabBar}>
-				<ListPage 
+				<ContentList 
 					tabLabel="全部" 
 					navigation={navigation} 
 					api={API.new.all} 
 					/>
-				<WaterfallPage 
+				<ContentWaterfall 
 					tabLabel="视频" 
 					navigation={navigation} 
 					api={API.new.video} 
 					/>
-				<ListPage 
+				<ContentList 
 					tabLabel="图片" 
 					navigation={navigation} 
 					api={API.new.picture} 
 					/>
-				<ListPage 
+				<ContentList 
 					tabLabel="笑话" 
 					navigation={navigation} 
 					api={API.new.joke} 
 					/>
-				<ListPage 
+				<ContentList 
 					tabLabel="影视分享" 
 					navigation={navigation} 
 					api={API.new.movie} 

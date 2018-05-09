@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {  View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import PlacehoderImage from '../Base/PlacehoderImage';
-import PlayImage from '../Base/PlayImage';
+import PlacehoderImage from '../../Base/PlaceholderImage';
+import PlayImage from './PlayImage';
 
-export default class componentName extends Component {
+export default class CommentItem extends Component {
     render() {
         
         return (

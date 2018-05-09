@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet } from 'react-native';
-import PlacehoderImage from './PlacehoderImage';
+import PlacehoderImage from '../../Base/PlaceholderImage';
 
 export default class PlayImage extends Component {
     constructor(props) {

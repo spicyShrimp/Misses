@@ -8,8 +8,7 @@ import {
 import { width } from '../../configs/Device';
 import NavItem from '../Navigator/NavItem';
 import ScrollableTabView, { DefaultTabBar } from 'react-native-scrollable-tab-view';
-import ListPage from '../Base/ListPage';
-import WaterfallPage from '../Base/WaterfallPage';
+import ContentList from '../Content/ContentList';
 import API from '../../configs/API';
 
 
@@ -42,31 +41,31 @@ export default class Through extends Component {
 				renderTabBar={this._renderTabBar}
 				ref={scroll => this.scroll = scroll} 
 				>
-				<ListPage 
+				<ContentList 
 					tabLabel="全部"
 					ref={all => this.lists[0] = all} 
 					navigation={navigation} 
 					api={API.through.all} 
 					/>
-				<ListPage
+				<ContentList
 					tabLabel="视频" 
 					ref={video => this.lists[1] = video} 
 					navigation={navigation} 
 					api={API.through.video} 
 					/>
-				<ListPage 
+				<ContentList 
 					tabLabel="图片" 
 					ref={picture => this.lists[2] = picture} 
 					navigation={navigation} 
 					api={API.through.picture} 
 					/>
-				<ListPage 
+				<ContentList 
 					tabLabel="段子" 
 					ref={joke => this.lists[3] = joke}
 					navigation={navigation} 
 					api={API.through.joke} 
 					/>
-				<ListPage 
+				<ContentList 
 					tabLabel="声音" 
 					ref={audio => this.lists[4] = audio}
 					navigation={navigation} 

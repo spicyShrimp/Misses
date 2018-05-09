@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class MSVideo extends Component {
+export default class VideoPlayer extends Component {
     constructor(props) {
         super(props);
 
@@ -534,7 +534,7 @@ export default class MSVideo extends Component {
     }
 }
 
-MSVideo.propTypes = {
+VideoPlayer.propTypes = {
     video: Video.propTypes.source,
     portrait: PropTypes.bool,
     thumbnail: Image.propTypes.source,
@@ -584,7 +584,7 @@ MSVideo.propTypes = {
     onToggleFullScreen: PropTypes.func,
 };
 
-MSVideo.defaultProps = {
+VideoPlayer.defaultProps = {
     portrait: true,
     videoWidth: 1280,
     videoHeight: 720,

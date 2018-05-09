@@ -8,7 +8,7 @@ import {
     TextInput,
     FlatList,
 } from 'react-native';
-import PlacehoderImage from '../Base/PlacehoderImage';
+import PlacehoderImage from '../Base/PlaceholderImage';
 import { connect } from 'react-redux';
 import { fetchSubScribeList } from '../../actions/Friend'
 

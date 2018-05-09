@@ -5480,9 +5480,9 @@ react-native-video@^2.0.0:
     keymirror "0.1.1"
     prop-types "^15.5.10"
 
-react-native@0.55.3:
-  version "0.55.3"
-  resolved "http://registry.npm.taobao.org/react-native/download/react-native-0.55.3.tgz#6ff1691bd0645d0480fba16377edb9dce5bd28c4"
+react-native@0.55.4:
+  version "0.55.4"
+  resolved "http://registry.npm.taobao.org/react-native/download/react-native-0.55.4.tgz#eecffada3750a928e2ddd07cf11d857ae9751c30"
   dependencies:
     absolute-path "^0.0.0"
     art "^0.10.0"

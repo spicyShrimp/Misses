@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {SafeAreaView, Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import MasonryList from '@appandflow/masonry-list';
-import PlacehoderImage from './PlacehoderImage';
+import PlacehoderImage from '../Base/PlaceholderImage';
 import { width, height } from '../../configs/Device';
 
 const itemWidth = (width - 16) / 2;
 
-export default class WaterfallPage extends React.Component {
+export default class ContentWaterfall extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -92,7 +92,7 @@ export default class WaterfallPage extends React.Component {
     }
 
     _onPress = (item) => {
-        this.props.navigation.navigate('VideoDetail', {item});
+        this.props.navigation.navigate('ContentDetail', {item});
     }
 
 }

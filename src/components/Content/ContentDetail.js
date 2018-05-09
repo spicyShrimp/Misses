@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { 
     Text, 
@@ -9,16 +10,16 @@ import {
     FlatList,
     Image, 
 } from 'react-native';
-import MSVideo from '../Base/MSVideo';
-import { width, height, statusBarHeight } from '../../configs/Device';
 import Orientation from 'react-native-orientation';
+import { width, height, statusBarHeight } from '../../configs/Device';
 import API from '../../configs/API';
-import PlayImage from '../Base/PlayImage';
-import PlacehoderImage from '../Base/PlacehoderImage';
-import CommentItem from './CommentItem';
 import NavItem from '../Navigator/NavItem';
+import PlacehoderImage from '../Base/PlaceholderImage';
+import PlayImage from './Component/PlayImage';
+import VideoPlayer from './Component/VideoPlayer';
+import CommentItem from './Component/CommentItem';
 
-export default class VideoDetial extends Component {
+export default class ContentDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -106,7 +107,7 @@ export default class VideoDetial extends Component {
         const { portrait } = this.state;
         return (
             <View>
-                <MSVideo
+                <VideoPlayer
                     endWithThumbnail={true}
                     thumbnail={{uri: item.video.thumbnail[0]}}
                     portrait={portrait}
@@ -158,7 +159,6 @@ export default class VideoDetial extends Component {
         fetch(API.comment(item.id, this.state.np))
         .then((response) => response.json())
         .then((jsonData) => {
-            console.log(jsonData);
             this.setState({
                 refreshing: false,
                 data: jsonData.normal.list,
