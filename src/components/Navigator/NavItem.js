@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { Image, TouchableOpacity, StyleSheet, View, ViewPropTypes } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 })
 
 NavItem.propTypes = {
-    style: PropTypes.style,
+    style: ViewPropTypes.style,
     source: PropTypes.object,
     onPress: PropTypes.func,
 }

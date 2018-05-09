@@ -93,12 +93,11 @@ export default class ContentWaterfall extends React.Component {
     }
 
     _renderItem = ({item}) => {
-        console.log(item);
         const itemHeight = this._getHeightForItem({item});
         return (
             <TouchableOpacity 
                 activeOpacity={0.7}
-                onPress={() => this._onPress(item)}
+                onPress={() => this._onPressContent(item)}
                 style={styles.item}>
                 <PlacehoderImage 
                     source={{uri: item.video.thumbnail[0]}}
@@ -113,7 +112,7 @@ export default class ContentWaterfall extends React.Component {
         )
     }
 
-    _onPress = (item) => {
+    _onPressContent = (item) => {
         this.props.navigation.navigate('ContentDetail', {item});
     }
 

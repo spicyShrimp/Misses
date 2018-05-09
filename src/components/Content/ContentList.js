@@ -97,9 +97,7 @@ export default class ContentList extends Component {
     }
 
     _onPressContent = (item) => {
-        if (item.type === 'video') {
-            this.props.navigation.navigate('ContentDetail', {item});
-        }
+        this.props.navigation.navigate('ContentDetail', {item});
     }
 };
 

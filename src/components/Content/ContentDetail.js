@@ -9,6 +9,7 @@ import {
     StyleSheet,
     FlatList,
     Image, 
+    WebView,
 } from 'react-native';
 import Orientation from 'react-native-orientation';
 import { width, height, statusBarHeight } from '../../configs/Device';
@@ -101,23 +102,69 @@ export default class ContentDetail extends Component {
     _ListHeaderComponent = () => {
         const { item } = this.props.navigation.state.params;
         const { portrait } = this.state;
-        return (
-            <View>
-                <VideoPlayer
-                    endWithThumbnail={true}
-                    thumbnail={{uri: item.video.thumbnail[0]}}
-                    portrait={portrait}
-                    ref={ref => this.video = ref}
-                    video={{uri: item.video.video[0]}}
-                    videoWidth={portrait ? width : height}
-                    videoHeight={portrait ? (width / item.video.width * item.video.height): width}
-                    onToggleFullScreen={this._onToggleFullScreen}
-                    autoplay={true}
-                    loop={true}
-                    />
-            </View>
-            
-        )
+        console.log(item);
+        if (item.type === 'video') {
+            return (
+                <View style={{marginBottom: 20, backgroundColor: '#fff'}}>
+                    <VideoPlayer
+                        endWithThumbnail={true}
+                        thumbnail={{uri: item.video.thumbnail[0]}}
+                        portrait={portrait}
+                        ref={ref => this.video = ref}
+                        video={{uri: item.video.video[0]}}
+                        videoWidth={portrait ? width : height}
+                        videoHeight={portrait ? (width / item.video.width * item.video.height): width}
+                        onToggleFullScreen={this._onToggleFullScreen}
+                        autoplay={true}
+                        loop={true}
+                        />
+                </View>
+                
+            )
+        } else if (item.type === 'image') {
+            if (item.image.height > 10000) {
+                return (
+                    <View style={{paddingTop: 44, marginBottom: 20, backgroundColor: '#fff'}}>
+                        <WebView 
+                        source={{uri: item.image.big[0]}}
+                        resizeMode={'contain'}
+                        style={{width, height: width / item.image.width * item.image.height}}
+                        />
+                    </View>
+                )
+            } else {
+                return (
+                    <View style={{paddingTop: 44, marginBottom: 20, backgroundColor: '#fff'}}>
+                        <PlacehoderImage 
+                            source={{uri: item.image.big[0]}}
+                            resizeMode={'contain'}
+                            style={{width, height: width / item.image.width * item.image.height}}
+                            placeholder={{uri: 'placeholder'}}
+                            />
+                    </View>
+                )
+            }
+        } else if (item.type === 'gif') {
+            return (
+                <View style={{marginBottom: 20, backgroundColor: '#fff'}}>
+                    <PlayImage 
+                        source={{uri: item.gif.images[0]}}
+                        resizeMode={'contain'}
+                        style={{width, height: width / item.gif.width * item.gif.height}}
+                        placeholder={{uri: 'placeholder'}}
+                        playSource={{uri: 'gif_play'}}
+                        playStyle={styles.itemPlay}
+                        hidePlay={true}
+                        />
+                </View>
+            )
+        } else {
+            return (
+                <View style={{padding: 20, paddingTop: 44, marginBottom: 20, backgroundColor: '#fff'}}>
+                    <Text style={{fontSize: 22}}>{item.text}</Text>
+                </View>
+            )
+        }
     }
 
     _onToggleFullScreen =() => {
@@ -217,6 +264,15 @@ const styles = StyleSheet.create({
     itemSep: {
         height: 0.5, 
         backgroundColor: 'rgba(100,100, 100, 0.2)'
+    },
+    itemPlay: {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginLeft: -35,
+        marginTop: -35,
+        width: 70, 
+        height: 70,
     },
 
 })
