@@ -25,7 +25,7 @@ export default class PlacehoderImage extends Component {
         return (
             <Image 
                 source={placeholder}
-                resizeMode={FastImage.resizeMode.contain}
+                resizeMode={FastImage.resizeMode.center}
                 style={styles.content}
                 />
         )

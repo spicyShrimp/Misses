@@ -53,9 +53,11 @@ export default class CommentItem extends Component {
 
     _renderContent = () => {
         const { item } = this.props;
-        let image;
+        let image ,imageWidth, imageHeigth;
         if (item.type === 'gif') {
             image = item.gif.thumbnail[0];
+            imageWidth = Math.max(imageWidth, item.gif.width);
+            imageHeigth = Math.max(150, imageWidth / item.gif.width * item.gif.height);
             return (
                 <TouchableOpacity 
                     onPress={() => this._onPressContent(item)}
@@ -65,7 +67,7 @@ export default class CommentItem extends Component {
                         source={{uri: image}}
                         resizeMode='contain'
                         placeholder={{uri: 'placeholder'}}
-                        style={{width: item.gif.width, height: item.gif.height}}
+                        style={{width: imageWidth, height: imageHeigth}}
                         playSource={{uri: 'gif_play'}}
                         playStyle={styles.itemPlay}
                         hidePlay={true}
@@ -74,6 +76,8 @@ export default class CommentItem extends Component {
             )
         } else if (item.type === 'image') {
             image = item.image.thumbnail[0];
+            imageWidth = Math.max(imageWidth, item.image.width);
+            imageHeigth = Math.max(150, imageWidth / item.image.width * item.image.height);
             return (
                 <TouchableOpacity 
                     onPress={() => this._onPressContent(item)}
@@ -83,7 +87,7 @@ export default class CommentItem extends Component {
                         source={{uri: image}}
                         resizeMode='contain'
                         placeholder={{uri: 'placeholder'}}
-                        style={{width: item.image.width, height: item.image.height}}
+                        style={{width: imageWidth, height: imageHeigth}}
                         />
                 </TouchableOpacity>
             )
