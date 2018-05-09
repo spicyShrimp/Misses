@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {  View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {  View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import PlacehoderImage from '../../Base/PlaceholderImage';
 import PlayImage from './PlayImage';
+import PropTypes from 'prop-types';
 
 export default class CommentItem extends Component {
     render() {
@@ -19,21 +20,35 @@ export default class CommentItem extends Component {
         const { item } = this.props;
         return (
             <View style={styles.itemHeader}>
-                    <TouchableOpacity style={styles.itemUser}>
-                            <PlacehoderImage 
-                                source={{uri: item.user.profile_image}}
-                                style={{width: 40, height: 40, borderRadius: 20, marginHorizontal: 10,}}
-                                />
-                            <Text>{item.user.username}</Text>
+                    <TouchableOpacity 
+                        onPress={() => this._onPressUser(item.user)}
+                        style={styles.itemUser}
+                        >
+                        <PlacehoderImage 
+                            source={{uri: item.user.profile_image}}
+                            style={{width: 40, height: 40, borderRadius: 20, marginHorizontal: 10,}}
+                            />
+                        <Text>{item.user.username}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.itemSupport}>
-                            <Text>好评</Text>
+                        <Image 
+                            source={{uri: 'detail_ding'}}
+                            style={{width: 20, height: 20}}
+                            />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.itemSupport}>
-                            <Text>差评</Text>
+                        <Image 
+                            source={{uri: 'detail_cai'}}
+                            style={{width: 20, height: 20}}
+                            />
                     </TouchableOpacity>
                 </View>
         )
+    }
+
+    _onPressUser = (user) => {
+        const { onPressUser } = this.props;
+        onPressUser && onPressUser(user);
     }
 
     _renderContent = () => {
@@ -42,7 +57,10 @@ export default class CommentItem extends Component {
         if (item.type === 'gif') {
             image = item.gif.thumbnail[0];
             return (
-                <TouchableOpacity style={styles.itemContent}>
+                <TouchableOpacity 
+                    onPress={() => this._onPressContent(item)}
+                    style={styles.itemContent}
+                    >
                     <PlayImage 
                         source={{uri: image}}
                         resizeMode='contain'
@@ -57,7 +75,10 @@ export default class CommentItem extends Component {
         } else if (item.type === 'image') {
             image = item.image.thumbnail[0];
             return (
-                <TouchableOpacity style={styles.itemContent}>
+                <TouchableOpacity 
+                    onPress={() => this._onPressContent(item)}
+                    style={styles.itemContent}
+                    >
                     <PlacehoderImage 
                         source={{uri: image}}
                         resizeMode='contain'
@@ -69,7 +90,10 @@ export default class CommentItem extends Component {
         } else if (item.type === 'video') {
             image = item.video.thumbnail[0];
             return (
-                <TouchableOpacity style={styles.itemContent}>
+                <TouchableOpacity 
+                    onPress={() => this._onPressContent(item)}
+                    style={styles.itemContent}
+                    >
                     <PlayImage 
                         source={{uri: image}}
                         resizeMode='contain'
@@ -83,11 +107,19 @@ export default class CommentItem extends Component {
             )
         } else {
             return (
-                <TouchableOpacity style={styles.itemContent}>
+                <TouchableOpacity 
+                    onPress={() => this._onPressContent(item)}
+                    style={styles.itemContent}
+                    >
                     <Text>{item.content}</Text>
                 </TouchableOpacity>
             )
         }        
+    }
+
+    _onPressContent = (item) => {
+        const { onPressContent } = this.props;
+        onPressContent && onPressContent(item);
     }
 }
 
@@ -108,8 +140,8 @@ const styles = StyleSheet.create({
     itemSupport: {
         alignItems: 'center',
         justifyContent: 'center',
-        width: 60,
-        height: 60,
+        width: 40,
+        height: 40,
     },
     itemContent: {
         margin: 10, 
@@ -125,3 +157,9 @@ const styles = StyleSheet.create({
         height: 70,
     },
 })
+
+CommentItem.propTypes = {
+    item: PropTypes.object.isRequired,
+    onPressUser: PropTypes.func,
+    onPressContent: PropTypes.func,
+}

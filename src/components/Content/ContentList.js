@@ -86,13 +86,13 @@ export default class ContentList extends Component {
         return (
             <ListItem 
                 item={item}
-                onPressHeader={this._onPressHeader}
+                onPressUser={this._onPressUser}
                 onPressContent={this._onPressContent}
                 />
         )
     }
 
-    _onPressHeader = (user) => {
+    _onPressUser = (user) => {
         this.props.navigation.navigate('Detail', {user});
     }
 
@@ -107,23 +107,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1, 
     },
-    item: {
-        padding: 10,
-        backgroundColor: '#fff',
-    },
-    itemText: {
-        marginBottom: 10,
-        fontSize: 12,
-    },
-    itemPlay: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        marginLeft: -35,
-        marginTop: -35,
-        width: 70, 
-        height: 70,
-    }
 })
 
 

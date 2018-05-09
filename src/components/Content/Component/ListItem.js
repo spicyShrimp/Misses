@@ -19,7 +19,7 @@ export default class ListItem extends Component {
         const { item } = this.props;
         return (
             <TouchableOpacity 
-                onPress={() => this._onPressHeader(item.u)}
+                onPress={() => this._onPressUser(item.u)}
                 style={styles.itemHeader}>
                 <PlacehoderImage 
                     source={{uri: item.u.header[0]}}
@@ -33,9 +33,9 @@ export default class ListItem extends Component {
         )
     }
 
-    _onPressHeader = (user) => {
-        const { onPressHeader } = this.props;
-        onPressHeader && onPressHeader(user);
+    _onPressUser = (user) => {
+        const { onPressUser } = this.props;
+        onPressUser && onPressUser(user);
     }
 
     _renderContent = () => {
@@ -148,6 +148,6 @@ const styles = StyleSheet.create({
 
 ListItem.propTypes = {
     item: PropTypes.object.isRequired,
-    onPressHeader: PropTypes.func,
+    onPressUser: PropTypes.func,
     onPressContent: PropTypes.func,
 }

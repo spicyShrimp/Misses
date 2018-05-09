@@ -42,12 +42,8 @@ export default class ContentDetail extends Component {
         StatusBar.setHidden(true, false);
         Orientation.lockToPortrait();
         this.setState({portrait: true})
+        this._onRefrsh(false);
     }
-
-    componentDidMount = () => {
-        this._onRefrsh();
-    };
-    
 
     componentWillUnmount() {
         StatusBar.setHidden(false, false);
@@ -58,7 +54,7 @@ export default class ContentDetail extends Component {
     render() {
         const { navOpciaty, portrait, refreshing, data } = this.state;
         return (
-            <View style={{flex: 1}}>
+            <View style={styles.container}>
                 <FlatList 
                     ref={ref => this.flatList = ref}
                     data={data}
@@ -66,7 +62,7 @@ export default class ContentDetail extends Component {
                     ListHeaderComponent={this._ListHeaderComponent}
                     renderItem={this._renderItem}
                     refreshing={refreshing}
-                    onRefresh={this._onRefrsh}
+                    onRefresh={() => this._onRefrsh(true)}
                     onEndReachedThreshold={0.5}
                     onEndReached={this._onEndReached}
                     ItemSeparatorComponent={this._ItemSeparatorComponent}
@@ -139,13 +135,27 @@ export default class ContentDetail extends Component {
 
     _renderItem = ({item}) => {
         return (
-            <CommentItem item={item} />
+            <CommentItem 
+                item={item} 
+                onPressUser={this._onPressUser}
+                onPressContent={this._onPressContent}
+                />
         )
+    }
+
+    _onPressUser = (user) => {
+        this.props.navigation.navigate('Detail', {user});
+    }
+
+    _onPressContent = (item) => {
+        if (item.type === 'video') {
+            this.props.navigation.navigate('ContentDetail', {item});
+        }
     }
 
     _ItemSeparatorComponent = () => {
         return (
-            <View style={{height: 0.5, backgroundColor: 'rgba(100,100, 100, 0.2)'}} />
+            <View style={styles.itemSep} />
         )
     }
 
@@ -153,9 +163,9 @@ export default class ContentDetail extends Component {
         return index + '';
     }
 
-    _onRefrsh = () => {
+    _onRefrsh = (refreshing) => {
         const { item } = this.props.navigation.state.params;
-        // this.setState({refreshing: true});
+        this.setState({refreshing});
         fetch(API.comment(item.id, this.state.np))
         .then((response) => response.json())
         .then((jsonData) => {
@@ -194,12 +204,8 @@ export default class ContentDetail extends Component {
 }
 
 const styles = StyleSheet.create({
-    backgroundVideo: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+    container: {
+        flex: 1, 
     },
     navBar: {
         position: 'absolute', 
@@ -207,6 +213,10 @@ const styles = StyleSheet.create({
         width, 
         height: 44,
         alignItems: 'center',
-    }
+    },
+    itemSep: {
+        height: 0.5, 
+        backgroundColor: 'rgba(100,100, 100, 0.2)'
+    },
 
 })
