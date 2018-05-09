@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 
 export default class ListItem extends Component {
     render() {
-        
         return (
             <View style={styles.item}>
                 {this._renderHeader()}
@@ -15,7 +14,6 @@ export default class ListItem extends Component {
             </View>
         )
     }
-
 
     _renderHeader = () => {
         const { item } = this.props;

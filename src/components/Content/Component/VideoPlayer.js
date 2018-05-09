@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Image, ImageBackground, Platform, StyleSheet, TouchableOpacity, View, ViewPropTypes } from 'react-native';
+import { 
+    Image, 
+    ImageBackground, 
+    Platform, 
+    StyleSheet, 
+    TouchableOpacity, 
+    View, 
+    ViewPropTypes 
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Video from 'react-native-video';
 
@@ -349,7 +357,7 @@ export default class VideoPlayer extends Component {
         <TouchableOpacity
             style={[styles.playButton, customStyles.playButton]}
             onPress={this.onStartPress}
-        >
+            >
             <Icon style={[styles.playArrow, customStyles.playArrow]} name="play-arrow" size={42} />
         </TouchableOpacity>
         );
@@ -367,7 +375,7 @@ export default class VideoPlayer extends Component {
             customStyles.thumbnail,
             ]}
             source={thumbnail}
-        >
+            >
             {this.renderStartButton()}
         </BackgroundImage>
         );
@@ -384,15 +392,15 @@ export default class VideoPlayer extends Component {
             fullWidth ? customStyles.seekBarFullWidth : {},
             ]}
             onLayout={this.onSeekBarLayout}
-        >
+            >
             <View
-            style={[
-                { flexGrow: this.state.progress },
-                styles.seekBarProgress,
-                customStyles.seekBarProgress,
-            ]}
-            />
-            { !fullWidth && !disableSeek ? (
+                style={[
+                    { flexGrow: this.state.progress },
+                    styles.seekBarProgress,
+                    customStyles.seekBarProgress,
+                ]}
+                />
+                { !fullWidth && !disableSeek ? (
             <View
                 style={[
                 styles.seekBarKnob,
@@ -407,13 +415,14 @@ export default class VideoPlayer extends Component {
                 onResponderMove={this.onSeek}
                 onResponderRelease={this.onSeekRelease}
                 onResponderTerminate={this.onSeekRelease}
-            />
-            ) : null }
+                />
+                ) : null }
             <View style={[
-            styles.seekBarBackground,
-            { flexGrow: 1 - this.state.progress },
-            customStyles.seekBarBackground,
-            ]} />
+                styles.seekBarBackground,
+                { flexGrow: 1 - this.state.progress },
+                customStyles.seekBarBackground,
+                ]} 
+                />
         </View>
         );
     }
@@ -484,24 +493,19 @@ export default class VideoPlayer extends Component {
             source={video}
             resizeMode={resizeMode}
             />
-            <View
-            style={[
-                this.getSizeStyles(),
-                { marginTop: -this.getSizeStyles().height },
-            ]}
-            >
-            <TouchableOpacity
-                style={styles.overlayButton}
-                onPress={() => {
-                this.showControls();
-                if (pauseOnPress)
-                    this.onPlayPress();
-                }}
-                onLongPress={() => {
-                if (fullScreenOnLongPress)
-                    this.onToggleFullScreen();
-                }}
-            />
+            <View style={[this.getSizeStyles(), { marginTop: -this.getSizeStyles().height }, ]}>
+                <TouchableOpacity
+                    style={styles.overlayButton}
+                    onPress={() => {
+                    this.showControls();
+                    if (pauseOnPress)
+                        this.onPlayPress();
+                    }}
+                    onLongPress={() => {
+                    if (fullScreenOnLongPress)
+                        this.onToggleFullScreen();
+                    }}
+                    />
             </View>
             {((!this.state.isPlaying) || this.state.isControlsVisible)
             ? this.renderControls() : this.renderSeekBar(true)}
@@ -518,7 +522,7 @@ export default class VideoPlayer extends Component {
         } else if (!isStarted) {
         return (
             <View style={[styles.preloadingPlaceholder, this.getSizeStyles(), style]}>
-            {this.renderStartButton()}
+                {this.renderStartButton()}
             </View>
         );
         }

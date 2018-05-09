@@ -6,6 +6,23 @@ import { width, height } from '../../configs/Device';
 
 const itemWidth = (width - 16) / 2;
 
+const secToTime = (s) => {
+    var h = 0, i = 0;
+    if(s > 60){
+        m = parseInt(s / 60);
+        s = parseInt(s % 60);
+        if(m > 60) {
+            h = parseInt(i / 60);
+            m = parseInt(i % 60);
+        }
+    }
+    // 补零
+    const zero = (v) => {
+        return (v >> 0) < 10 ? ("0" + v) : v;
+    };
+    return (h == 0 ? [zero(m), zero(s)].join(":") : [zero(h), zero(m), zero(s)].join(":"));
+}
+
 export default class ContentWaterfall extends React.Component {
     constructor(props) {
         super(props);
@@ -76,6 +93,7 @@ export default class ContentWaterfall extends React.Component {
     }
 
     _renderItem = ({item}) => {
+        console.log(item);
         const itemHeight = this._getHeightForItem({item});
         return (
             <TouchableOpacity 
@@ -87,6 +105,10 @@ export default class ContentWaterfall extends React.Component {
                     placeholder={{uri: 'placeholder'}}
                     style={{width: itemWidth, height: itemHeight, borderRadius: 4}}
                     />
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',paddingHorizontal: 10, position: 'absolute', left: 0, right: 0, bottom: 0, height: 30, backgroundColor: '#0002', borderBottomLeftRadius: 4, borderBottomRightRadius: 4}}>
+                    <Text style={{color: '#fff'}}>{secToTime(item.video.duration)}</Text>
+                    <Text style={{color: '#fff'}}>{item.comment}</Text>
+                </View>
             </TouchableOpacity>
         )
     }
