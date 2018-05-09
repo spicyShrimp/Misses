@@ -129,9 +129,7 @@ export default class VideoPlayer extends Component {
     }
 
     componentDidMount() {
-        if (this.props.autoplay) {
-        this.hideControls();
-        }
+        this.props.autoplay && this.hideControls();
     }
 
     componentWillUnmount() {
@@ -149,14 +147,12 @@ export default class VideoPlayer extends Component {
     }
 
     onStartPress() {
-        if (this.props.onStart) {
-        this.props.onStart();
-        }
+        this.props.onStart && this.props.onStart();
 
         this.setState(state => ({
-        isPlaying: true,
-        isStarted: true,
-        progress: state.progress === 1 ? 0 : state.progress,
+            isPlaying: true,
+            isStarted: true,
+            progress: state.progress === 1 ? 0 : state.progress,
         }));
 
         this.hideControls();
@@ -164,20 +160,17 @@ export default class VideoPlayer extends Component {
 
     onProgress(event) {
         if (this.state.isSeeking) {
-        return;
+            return;
         }
-        if (this.props.onProgress) {
-        this.props.onProgress(event);
-        }
+        this.props.onProgress && this.props.onProgress(event);
+
         this.setState({
-        progress: event.currentTime / (this.props.duration || this.state.duration),
+            progress: event.currentTime / (this.props.duration || this.state.duration),
         });
     }
 
     onEnd(event) {
-        if (this.props.onEnd) {
-        this.props.onEnd(event);
-        }
+        this.props.onEnd && this.props.onEnd(event);
 
         if (this.props.endWithThumbnail) {
         this.setState({ isStarted: false });
@@ -200,48 +193,42 @@ export default class VideoPlayer extends Component {
     }
 
     onLoad(event) {
-        if (this.props.onLoad) {
-        this.props.onLoad(event);
-        }
+        this.props.onLoad && this.props.onLoad(event);
 
         const { duration } = event;
         this.setState({ duration });
     }
 
     onPlayPress() {
-        if (this.props.onPlayPress) {
-        this.props.onPlayPress();
-        }
+        this.props.onPlayPress && this.props.onPlayPress();
 
         this.setState({
-        isPlaying: !this.state.isPlaying,
+            isPlaying: !this.state.isPlaying,
         });
         this.showControls();
     }
 
     onMutePress() {
         this.setState({
-        isMuted: !this.state.isMuted,
+            isMuted: !this.state.isMuted,
         });
         this.showControls();
     }
 
     onToggleFullScreen() {
-        if (this.props.onToggleFullScreen) {
-            this.props.onToggleFullScreen();
-        }
+        this.props.onToggleFullScreen && this.props.onToggleFullScreen();
     }
 
     onSeekBarLayout({ nativeEvent }) {
         const customStyle = this.props.customStyles.seekBar;
         let padding = 0;
         if (customStyle && customStyle.paddingHorizontal) {
-        padding = customStyle.paddingHorizontal * 2;
+            padding = customStyle.paddingHorizontal * 2;
         } else if (customStyle) {
-        padding = customStyle.paddingLeft || 0;
-        padding += customStyle.paddingRight ? customStyle.paddingRight : 0;
+            padding = customStyle.paddingLeft || 0;
+            padding += customStyle.paddingRight ? customStyle.paddingRight : 0;
         } else {
-        padding = 20;
+            padding = 20;
         }
 
         this.seekBarWidth = nativeEvent.layout.width - padding;
@@ -260,15 +247,15 @@ export default class VideoPlayer extends Component {
         this.seekProgressStart = this.state.progress;
         this.wasPlayingBeforeSeek = this.state.isPlaying;
         this.setState({
-        isSeeking: true,
-        isPlaying: false,
+            isSeeking: true,
+            isPlaying: false,
         });
     }
 
     onSeekRelease() {
         this.setState({
-        isSeeking: false,
-        isPlaying: this.wasPlayingBeforeSeek,
+            isSeeking: false,
+            isPlaying: this.wasPlayingBeforeSeek,
         });
         this.showControls();
     }
@@ -279,7 +266,7 @@ export default class VideoPlayer extends Component {
         const progress = this.seekProgressStart + ((ratio * diff) / 100);
 
         this.setState({
-        progress,
+            progress,
         });
 
         this.player.seek(progress * this.state.duration);
@@ -290,36 +277,34 @@ export default class VideoPlayer extends Component {
         const { width } = this.state;
         const ratio = videoHeight / videoWidth;
         return {
-        height: width * ratio,
-        width,
+            height: width * ratio,
+            width,
         };
     }
 
     hideControls() {
         if (this.props.onHideControls) {
-        this.props.onHideControls();
+            this.props.onHideControls();
         }
 
         if (this.props.disableControlsAutoHide) {
-        return;
+            return;
         }
 
         if (this.controlsTimeout) {
-        clearTimeout(this.controlsTimeout);
-        this.controlsTimeout = null;
+            clearTimeout(this.controlsTimeout);
+            this.controlsTimeout = null;
         }
         this.controlsTimeout = setTimeout(() => {
-        this.setState({ isControlsVisible: false });
+            this.setState({ isControlsVisible: false });
         }, this.props.controlsTimeout);
     }
 
     showControls() {
-        if (this.props.onShowControls) {
-        this.props.onShowControls();
-        }
+        this.props.onShowControls && this.props.onShowControls();
 
         this.setState({
-        isControlsVisible: true,
+            isControlsVisible: true,
         });
         this.hideControls();
     }
@@ -330,8 +315,8 @@ export default class VideoPlayer extends Component {
 
     stop() {
         this.setState({
-        isPlaying: false,
-        progress: 0,
+            isPlaying: false,
+            progress: 0,
         });
         this.seek(0);
         this.showControls();
@@ -339,14 +324,14 @@ export default class VideoPlayer extends Component {
 
     pause() {
         this.setState({
-        isPlaying: false,
+            isPlaying: false,
         });
         this.showControls();
     }
 
     resume() {
         this.setState({
-        isPlaying: true,
+            isPlaying: true,
         });
         this.showControls();
     }

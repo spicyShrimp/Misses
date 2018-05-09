@@ -7,7 +7,7 @@ import { width, height } from '../../configs/Device';
 const itemWidth = (width - 16) / 2;
 
 const secToTime = (s) => {
-    var h = 0, i = 0;
+    let h = 0, m = 0;
     if(s > 60){
         m = parseInt(s / 60);
         s = parseInt(s % 60);

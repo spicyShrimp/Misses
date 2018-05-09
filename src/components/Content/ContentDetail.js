@@ -15,8 +15,8 @@ import { width, height, statusBarHeight } from '../../configs/Device';
 import API from '../../configs/API';
 import NavItem from '../Navigator/NavItem';
 import PlacehoderImage from '../Base/PlaceholderImage';
+import VideoPlayer from '../Base/VideoPlayer';
 import PlayImage from './Component/PlayImage';
-import VideoPlayer from './Component/VideoPlayer';
 import CommentItem from './Component/CommentItem';
 
 export default class ContentDetail extends Component {
