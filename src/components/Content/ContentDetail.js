@@ -195,9 +195,9 @@ export default class ContentDetail extends Component {
     }
 
     _onPressContent = (item) => {
-        if (item.type === 'video') {
-            this.props.navigation.navigate('ContentDetail', {item});
-        }
+        // if (item.type === 'video') {
+        //     this.props.navigation.navigate('ContentDetail', {item});
+        // }
     }
 
     _ItemSeparatorComponent = () => {
