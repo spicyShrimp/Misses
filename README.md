@@ -64,3 +64,8 @@ react native
 * 扩展详情页支持各种类型内容
 * ![](./exhibition/11.gif)
 * ![](./exhibition/11.png)
+
+5.14
+* 简单添加榜单页面
+* 框架内容微调优化
+* ![](./exhibition/12.png)

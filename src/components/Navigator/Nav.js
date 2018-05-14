@@ -18,6 +18,7 @@ import Detail from '../Detail';
 import FriendDetail from '../Friend/FriendDetail';
 import ContentDetail from '../Content/ContentDetail';
 import Publish from '../Publish';
+import WebPage from '../Base/WebPage';
 
 const navigationOptions = ({navigation}) => {
     const options = {
@@ -66,6 +67,7 @@ const Main = StackNavigator(
         Detail,
         ContentDetail,
         FriendDetail,
+        WebPage,
     },
     {
         initialRouteName: 'Tab',
