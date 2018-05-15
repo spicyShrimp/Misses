@@ -50,7 +50,7 @@ export default class ContentWaterfall extends React.Component {
                     onEndReachedThreshold={0.5}
                     onEndReached={this._onEndReached}
                     keyExtractor={this._keyExtractor}
-                />
+                    />
             </SafeAreaView>
         )
     }
@@ -104,7 +104,7 @@ export default class ContentWaterfall extends React.Component {
                     placeholder={{uri: 'placeholder'}}
                     style={{width: itemWidth, height: itemHeight, borderRadius: 4}}
                     />
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',paddingHorizontal: 10, position: 'absolute', left: 0, right: 0, bottom: 0, height: 30, backgroundColor: '#0002', borderBottomLeftRadius: 4, borderBottomRightRadius: 4}}>
+                <View style={styles.itemText}>
                     <Text style={{color: '#fff'}}>{secToTime(item.video.duration)}</Text>
                     <Text style={{color: '#fff'}}>{item.comment}</Text>
                 </View>
@@ -124,5 +124,19 @@ const styles = StyleSheet.create({
     },
     item: {
         margin: 4,
+    },
+    itemText: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        paddingHorizontal: 10, 
+        position: 'absolute', 
+        left: 0, 
+        right: 0, 
+        bottom: 0, 
+        height: 30, 
+        backgroundColor: '#0002', 
+        borderBottomLeftRadius: 4, 
+        borderBottomRightRadius: 4
     },
 })

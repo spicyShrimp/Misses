@@ -17,7 +17,7 @@ export default class Essence extends Component {
 	static navigationOptions = ({navigation}) => ({
 		headerLeft: <NavItem 
 						source={{uri: 'nav_game'}} 
-						onPress={() => navigation.navigate('Detail')} 
+						onPress={() => navigation.navigate('WebPage', {source: {uri: 'http://d.api.budejie.com/user/hot/35'}})} 
 						/>,
 		headerRight: <NavItem 
 						source={{uri: 'nav_random'}} 
