@@ -50,7 +50,7 @@ export default class ContentWaterfall extends React.Component {
                     onEndReachedThreshold={0.5}
                     onEndReached={this._onEndReached}
                     keyExtractor={this._keyExtractor}
-                />
+                    />
             </SafeAreaView>
         )
     }
