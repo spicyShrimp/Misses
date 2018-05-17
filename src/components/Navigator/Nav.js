@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-// import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
+import StackViewStyleInterpolator from 'react-navigation/src/views/StackView/StackViewStyleInterpolator';
 import { ios, statusBarHeight } from '../../configs/Device';
 import NavItem from './NavItem';
 import Tab from './Tab';
@@ -47,18 +47,18 @@ const navigationOptions = ({navigation}) => {
     }
 };
 
-// const transitionConfig = ({scene}) => {
-//     if (scene.route.routeName === 'ContentDetail') {
-//         return {
-//             screenInterpolator: CardStackStyleInterpolator.forFade,
-//         }
-//     } else {
-//         return {
-//             screenInterpolator: CardStackStyleInterpolator.forHorizontal,
-//         }
-//     }
+const transitionConfig = ({scene}) => {
+    if (scene.route.routeName === 'ContentDetail') {
+        return {
+            screenInterpolator: StackViewStyleInterpolator.forFade,
+        }
+    } else {
+        return {
+            screenInterpolator: StackViewStyleInterpolator.forHorizontal,
+        }
+    }
     
-// }
+}
 
 const Main = StackNavigator(
     {
@@ -74,7 +74,7 @@ const Main = StackNavigator(
         mode: 'card',
         headerMode: 'screen',
         navigationOptions,
-        // transitionConfig,
+        transitionConfig,
     }
 )
 
