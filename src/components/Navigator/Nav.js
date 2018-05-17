@@ -3,9 +3,7 @@ import {
     View, 
     Image, 
     Text,
-    TouchableOpacity, 
-    Easing, 
-    Animated
+    TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
