@@ -3,11 +3,13 @@ import {
     View, 
     Image, 
     Text,
-    TouchableOpacity,
+    TouchableOpacity, 
+    Easing, 
+    Animated
 } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
-import StackViewStyleInterpolator from 'react-navigation/src/views/StackView/StackViewStyleInterpolator';
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 import { ios, statusBarHeight } from '../../configs/Device';
 import NavItem from './NavItem';
 import Tab from './Tab';
@@ -48,11 +50,11 @@ const navigationOptions = ({navigation}) => {
 const transitionConfig = ({scene}) => {
     if (scene.route.routeName === 'ContentDetail') {
         return {
-            screenInterpolator: StackViewStyleInterpolator.forFade,
+            screenInterpolator: CardStackStyleInterpolator.forFade,
         }
     } else {
         return {
-            screenInterpolator: StackViewStyleInterpolator.forHorizontal,
+            screenInterpolator: CardStackStyleInterpolator.forHorizontal,
         }
     }
     
