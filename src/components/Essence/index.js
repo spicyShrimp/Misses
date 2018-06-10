@@ -23,6 +23,7 @@ export default class Essence extends Component {
 						source={{uri: 'nav_random'}} 
 						onPress={() => navigation.navigate('Through')} 
 						/>,
+		headerTitle: '百思不得姐',
 	})
 	render() {
 		const {navigation} = this.props;

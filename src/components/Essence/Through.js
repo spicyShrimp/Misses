@@ -19,6 +19,7 @@ export default class Through extends Component {
 						source={{uri: 'nav_random'}} 
 						onPress={navigation.state.params && navigation.state.params._onPress} 
 						/>,
+			headerTitle: '百思不得姐',
 		}
 	}
 

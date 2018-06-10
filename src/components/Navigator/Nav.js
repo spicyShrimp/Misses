@@ -33,7 +33,6 @@ const navigationOptions = ({navigation}) => {
         headerTintColor: '#fff',
         headerBackTitle: null,
         gesturesEnabled: false,
-        headerTitle: '百思不得姐',
     };
 
     if (navigation.state.routeName === 'Tab') {
@@ -42,7 +41,7 @@ const navigationOptions = ({navigation}) => {
         return {
             ...options, 
             headerLeft: <NavItem onPress={() => navigation.goBack()} />, 
-            headerRight: <View />
+            headerRight: <View />,
         };
     }
 };

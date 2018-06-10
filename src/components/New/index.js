@@ -23,6 +23,7 @@ export default class Essence extends Component {
 						source={{uri: 'nav_search'}} 
 						onPress={() => navigation.navigate('Detail')} 
 						/>,
+		headerTitle: '百思不得姐',
 	})
 	render() {
 		const {navigation} = this.props;
