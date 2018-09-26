@@ -4,6 +4,11 @@ react native
 项目开始时间2018.4.25.
 项目仅在工作业余时间开发,所以进度可能会比较慢...
 
+```
+  npm install 或者yarn安装依赖包
+  react-native run-ios
+```
+
 4.25
 * 初始化项目
 * 基础项目框架搭建
